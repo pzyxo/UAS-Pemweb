@@ -10,8 +10,7 @@
 
     <title>Soul Match - Find Your Mate Here</title>
   </head>
-  <body style="background-image: url(img/bg.png);  background-repeat: no-repeat;
-  background-size: cover;">
+  <body style="background-image: url(img/bg.png); background-repeat: no-repeat; background-size: cover; overflow-x: hidden;">
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #f78fb3">
       <div class="container-fluid">
         <a class="navbar-brand" href="#"><B>SOUL MATCH</B></a>
@@ -19,49 +18,56 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Match</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Messages</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Activity</a>
-            </li>
-          </ul>
+          <div class="row">
+            <div class="col">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Match</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Messages</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Activity</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col" style="position: absolute;left: 93%;">
+              <a href="login.html" class="btn btn-danger">Sign In</a>
+            </div>
+          </div>
         </div>
       </div>
     </nav>
     <div class='container-fluid' style="position: absolute;top: 15%;left: 10%;text-align:center;width: 80%">
     	<div class='row'>
     		<div class="col" style="padding: 5%;">
-    			<div class='card' style="margin: 5%;background-color: #f78fb3;border-radius: 50px;border:5px solid white">
+    			<div class='card' style="margin: 5%;background-color: #f78fb3;border-radius: 50px;border:3px solid white;padding-bottom: 28%;">
     				<p><h3>Sign In</h3></p>
-    				<p>
-    				<form method="post" action="login.php">
-    					<input type='email' name='email' class="form-control-md" placeholder="email"><br>
-    					<input type="password" name='pass' class="form-control-md" placeholder="password"><br>
-    					<button type="submit" name="submit" class="btn btn-light" style="background-color: #f8a5c2;">Sign In</button>
+    				<center><p>
+    				<form method="post" action="login.php" style="width: 70%;">
+    					<input type='email' name='email' class="form-control" placeholder="email"><br>
+    					<input type="password" name='pass' class="form-control" placeholder="password"><br>
+    					<button type="submit" name="submit" class="btn btn-light" >Sign In</button>
     				</form>
-    			</p>
+    			</p></center>
     			</div>
     		</div>
     		<div class="col" style="padding: 5%">
-    			<div class='card' style="margin: 5%;background-color: #f78fb3;border-radius: 50px;border:5px solid white">
+    			<div class='card' style="margin: 5%;background-color: #f78fb3;border-radius: 50px;border:3px solid white">
     				<p><h3>Sign Up</h3></p>
-    				<p>
-    				<form method="post" action="login.php">
+    				<center><p>
+    				<form method="post" action="login.php" style="width: 70%;">
     					<input type='email' name='email' class="form-control" placeholder="email"><br>
     					<input type="text" name="uname" class="form-control" placeholder="username"><br>
     					<input type="password" name='pass' class="form-control" placeholder="password"><br>
     					<input type="password" name='pass2' class="form-control" placeholder="confirm password"><br>
     					<button type="submit" name="submit" class="btn btn-light">Sign Up</button>
     				</form>
-    			</p>
+    			</p></center>
     			</div>
     		</div>
     	</div>

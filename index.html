@@ -10,7 +10,7 @@
 
     <title>Soul Match - Find Your Mate Here</title>
   </head>
-  <body style="background-color: #f8a5c2">
+  <body style="background-color: #f8a5c2;overflow-x: hidden;">
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #f78fb3">
       <div class="container-fluid">
         <a class="navbar-brand" href="#"><B>SOUL MATCH</B></a>
@@ -18,20 +18,28 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Match</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Messages</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Activity</a>
-            </li>
-          </ul>
+          <div class="row">
+            <div class="col">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Match</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Messages</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Activity</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col" style="position: absolute;left: 93%;">
+              <a href="login.html" class="btn btn-danger">Sign In</a>
+            </div>
+          </div>
+          
         </div>
       </div>
     </nav>
