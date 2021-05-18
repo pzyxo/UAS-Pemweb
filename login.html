@@ -10,7 +10,8 @@
 
     <title>Soul Match - Find Your Mate Here</title>
   </head>
-  <body style="background-color: #f8a5c2">
+  <body style="background-image: url(img/bg.png);  background-repeat: no-repeat;
+  background-size: cover;">
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #f78fb3">
       <div class="container-fluid">
         <a class="navbar-brand" href="#"><B>SOUL MATCH</B></a>
@@ -35,6 +36,36 @@
         </div>
       </div>
     </nav>
+    <div class='container-fluid' style="position: absolute;top: 15%;left: 10%;text-align:center;width: 80%">
+    	<div class='row'>
+    		<div class="col" style="padding: 5%;">
+    			<div class='card' style="margin: 5%;background-color: #f78fb3;border-radius: 50px;border:5px solid white">
+    				<p><h3>Sign In</h3></p>
+    				<p>
+    				<form method="post" action="login.php">
+    					<input type='email' name='email' class="form-control-md" placeholder="email"><br>
+    					<input type="password" name='pass' class="form-control-md" placeholder="password"><br>
+    					<button type="submit" name="submit" class="btn btn-light" style="background-color: #f8a5c2;">Sign In</button>
+    				</form>
+    			</p>
+    			</div>
+    		</div>
+    		<div class="col" style="padding: 5%">
+    			<div class='card' style="margin: 5%;background-color: #f78fb3;border-radius: 50px;border:5px solid white">
+    				<p><h3>Sign Up</h3></p>
+    				<p>
+    				<form method="post" action="login.php">
+    					<input type='email' name='email' class="form-control" placeholder="email"><br>
+    					<input type="text" name="uname" class="form-control" placeholder="username"><br>
+    					<input type="password" name='pass' class="form-control" placeholder="password"><br>
+    					<input type="password" name='pass2' class="form-control" placeholder="confirm password"><br>
+    					<button type="submit" name="submit" class="btn btn-light">Sign Up</button>
+    				</form>
+    			</p>
+    			</div>
+    		</div>
+    	</div>
+    </div>
 
   </body>
 </html>
