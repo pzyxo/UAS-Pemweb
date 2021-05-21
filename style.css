@@ -1,0 +1,33 @@
+.grid-galery {
+	display: grid;
+	grid:
+	'foto1 foto2 foto3 foto4 foto5' 
+	'foto1 foto2 foto3 foto4 foto5';
+	grid-gap: 0px;
+	padding: 0px;
+	grid-auto-rows: 200px 200px 200px 200px 200px;
+
+}
+
+.grid-galery > div {
+	padding: 0;
+	font-size: 30px;
+}
+
+#galery {
+	padding-top: 250px;
+	padding-bottom: 250px;
+	padding-left: 90px;
+}
+
+#galery img {
+	border-radius: 100%;
+	border: 3px solid black;
+	transition: ease 1s;
+}
+#galery img:hover {
+	transform: scale(2.2);
+	border-radius: 5px;
+	border: 1px solid black;
+
+}
