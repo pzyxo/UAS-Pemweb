@@ -51,8 +51,8 @@
 	position: relative;
 	min-width: 20px;
 	min-height: 20px;
-	max-width: 58.41509246826172px;
-	width: 58.41509246826172px;
+	max-width: 58px;
+	width: 58px;
   }
   .image {
 	object-fit: contain;
@@ -65,7 +65,7 @@
   }
   .image-sizer {
 	width: 100%;
-	padding-top: 108.97042453533123%;
+	padding-top: 108%;
 	pointer-events: none;
 	font-size: 0;
   }
@@ -110,8 +110,8 @@
 	position: relative;
 	min-width: 20px;
 	min-height: 20px;
-	max-width: 60.29490661621094px;
-	width: 60.29490661621094px;
+	max-width: 60px;
+	width: 60px;
 	border-color: rgba(248, 165, 194, 1);
 	border-width: 3px;
 	border-style: solid;
@@ -127,7 +127,7 @@
   }
   .image-sizer-2 {
 	width: 100%;
-	padding-top: 111.52082747583378%;
+	padding-top: 111%;
 	pointer-events: none;
 	font-size: 0;
   }
@@ -158,12 +158,12 @@
 	position: relative;
 	min-width: 20px;
 	min-height: 20px;
-	max-width: 58.41509246826172px;
-	width: 58.41509246826172px;
+	max-width: 58px;
+	width: 58px;
   }
   .image-sizer-3 {
 	width: 100%;
-	padding-top: 109.50169938731153%;
+	padding-top: 109%;
 	pointer-events: none;
 	font-size: 0;
   }
@@ -188,8 +188,8 @@
 	position: relative;
 	min-width: 20px;
 	min-height: 20px;
-	max-width: 60.29490661621094px;
-	width: 60.29490661621094px;
+	max-width: 60x;
+	width: 60px;
 	box-shadow: 3px 3px 4px 1px rgba(0, 0, 0, 0.25);
   }
   .image-3 {
@@ -203,7 +203,7 @@
   }
   .image-sizer-4 {
 	width: 100%;
-	padding-top: 111.52082747583378%;
+	padding-top: 111%;
 	pointer-events: none;
 	font-size: 0;
   }
@@ -265,7 +265,7 @@
   }
   .image-sizer-5 {
 	width: 100%;
-	padding-top: 108.69565217391303%;
+	padding-top: 108%;
 	pointer-events: none;
 	font-size: 0;
   }
@@ -292,9 +292,9 @@
   }
   .div-27 {
 	display: flex;
-	max-width: 588.0008544921875px;
+	max-width: 5885px;
 	height: 0px;
-	width: 588.0008544921875px;
+	width: 588px;
 	border-color: rgba(0, 0, 0, 1);
 	border-width: 1px;
 	border-style: solid;
