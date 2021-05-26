@@ -5,7 +5,7 @@
 	transition: ease 0.5s;
 }
 #galery img:hover {
-	transform: scale(1.2);
+	transform: scale(1.5);
 	border-radius: 5px;
 	border: 1px solid white;
 }
