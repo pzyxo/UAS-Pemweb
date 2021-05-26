@@ -54,56 +54,76 @@
     <!-- end of navbar -->
 
     <!-- tampilan messages -->
+    <div class="container-fluid">
+    <div class="d-flex align-items-start">
+      <style>
+        .nav-link {
+          
+          color: black;
+        }
 
-    <div class="div-container" style="padding-left: 5%;padding-right: 5%;padding-top: 2%;">
-        <div class="row">
-            
-            <div class="col-lg-6 col-md-4 col-sm-12">
-                <center>
-                <div class="row" style="padding:2%;">
-                    <div class="col-10" style="border: 5px solid white;padding: 1%;border-radius: 35px;background-color: white;">
-                        <div class="row align-items-center">
-                            <div class="col-4">
-                                <img src="img/couple1.jpg" width="100px" style="border-radius: 100%;">
-                            </div>
-                            <div class="col-8">
-                                <h1>Lorem</h1>
-                            </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="row" style="padding: 2%;">
-                    <div class="col-9" style="border: 5px solid white;padding: 1%;border-radius: 35px;">
-                        <div class="row align-items-center">
-                            <div class="col-4">
-                                <img src="img/couple1.jpg" width="100px" style="border-radius: 100%;">
-                            </div>
-                            <div class="col-8">
-                                <h1>Lorem</h1>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row" style="padding: 2%;">
-                    <div class="col-9" style="border: 5px solid white;padding: 1%;border-radius: 35px;">
-                        <div class="row align-items-center">
-                            <div class="col-4">
-                                <img src="img/couple1.jpg" width="100px" style="border-radius: 100%;">
-                            </div>
-                            <div class="col-8">
-                                <h1>Lorem</h1>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </center>
+        .nav-link:hover {
+          color: white;
+        }
+
+        .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+          background-color:#bb2d3b; 
+          border-radius: 15px;
+          transition: ease 0.5s;
+        }
+      </style>
+      <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="font-size: 2rem;">
+        <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">
+          <div class="row align-items-center">
+            <div class="col-4">
+                <img src="img/couple1.jpg" width="50px" style="border-radius: 100%;">
             </div>
-            
-            <div class="col-lg-6 col-md-8 col-sm-12" style="border-radius: 15px;border:5px solid white">
-                <div class="row"></div>
+            <div class="col-8">
+                <h1>Lorem</h1>
             </div>
-        </div>
+          </div>
+        </button>
+
+        <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
+          <div class="row align-items-center">
+            <div class="col-4">
+                <img src="img/user1.jpg" width="50px" style="border-radius: 100%;">
+            </div>
+            <div class="col-8">
+                <h1>Ipsum</h1>
+            </div>
+          </div>
+        </button>
+
+        <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">
+          <div class="row align-items-center">
+            <div class="col-4">
+                <img src="img/user2.jpeg" width="50px" style="border-radius: 100%;">
+            </div>
+            <div class="col-8">
+                <h1>Dolor</h1>
+            </div>
+          </div>
+        </button>
+
+        <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">
+          <div class="row align-items-center">
+            <div class="col-4">
+                <img src="img/user3.jpeg" width="50px" style="border-radius: 100%;">
+            </div>
+            <div class="col-8">
+                <h1>Amet</h1>
+            </div>
+          </div>
+        </button>
+      </div>
+      <div class="tab-content" id="v-pills-tabContent">
+        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">Lorem</div>
+        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">Ipsum</div>
+        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">Dolor</div>
+        <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">Amet</div>
+      </div>
+    </div>
     </div>
     
    
