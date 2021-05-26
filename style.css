@@ -1,14 +1,11 @@
 
-
-
-
 #galery img {
 	border-radius: 100%;
 	border: 3px solid white;
 	transition: ease 0.5s;
 }
 #galery img:hover {
-	transform: scale(2);
+	transform: scale(1.2);
 	border-radius: 5px;
 	border: 1px solid white;
 }
