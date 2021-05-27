@@ -14,7 +14,7 @@
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #f78fb3">
       <div class="container-fluid">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="index.php">
           <img src="img/SOULMATCH.png" alt="" width="180px"> </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -22,23 +22,55 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="index.html">Home</a>
+              <a class="nav-link" href="index.php">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="match.html">Match</a>
+              <a class="nav-link active" aria-current="page" href="match.php">Match</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="messages.html">Messages</a>
+              <a class="nav-link" href="messages.php">Messages</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="activity.html">Activity</a>
+              <a class="nav-link" href="activity.php">Activity</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="profile.html">Profile</a>
+              <a class="nav-link" href="profile.php">Profile</a>
             </li>
             
           </ul>
-            <a href="login.html" class="btn btn-danger d-flex" type="submit">Sign In</a>
+          <?php
+          if(!isset($_COOKIE['nama'])){
+            ?>
+            <a href="login.html" class="btn btn-danger d-flex">Sign In</a>
+            
+            <?php
+          } else {
+            ?>
+            <div class="btn-group">
+              <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" style="border-radius:30px;text-decoration:none">
+              <img src="img/user1.jpg" style="border-radius:100%;width:25px;text-decoration:none">
+                
+              </button>
+              <ul class="dropdown-menu dropdown-menu-lg-end" style="border-radius:15px"> 
+                <li><h5 class="dropdown-item disabled" style="color:black">
+                <img src="img/user1.jpg" style="border-radius:100%;width:50px;text-decoration:none">
+                <?php
+                echo "<strong style='text-decoration:none'>{$_COOKIE['nama']}</strong>";
+                ?>
+                </h5>
+                </li>
+                <li><button class="dropdown-item" type="button" href="profile.php">Profile</button></li>
+                <li><button class="dropdown-item" type="button" href="settings.php">Setting</button></li>
+                <center>
+                <div class="dropdown-divider" style="border-top: 2px solid black; width: 90%;"></div>
+                </center>
+                <li><button class="dropdown-item" type="button" href="logout.php">Sign Out</button></li>
+              </ul>
+            </div>
+            
+            <?php
+          }
+          ?>
         </div>
       </div>
     </nav>
