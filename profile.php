@@ -1,6 +1,17 @@
+<?php
+if (!isset($_COOKIE['email'])){
+  header('Location: cek.php');
+} else {
+include('data.php');
+
+
+?>
+
+
 <!doctype html>
 <html lang="en">
   <head>
+    <link rel="stylesheet" href="style.css">
     <link rel="icon" href="img/logo.png">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,6 +20,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 
     <title>Soul Match - Find Your Mate Here</title>
+    
   </head>
   <body style="background-color: #f8a5c2;overflow-x: hidden;">
     <!-- navbar -->
@@ -33,38 +45,46 @@
             <li class="nav-item">
               <a class="nav-link" href="activity.php">Activity</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="profile.php">Profile</a>
-            </li>
             
           </ul>
+          
+          <style>
+            .dropdown-item.active {
+              background-color:#f78fb3;
+            }
+
+            .dropdown-item.red:hover {
+              background-color:red;
+              color:white;
+            }
+          </style>
           <?php
-          if(!isset($_COOKIE['nama'])){
+          if(!isset($_COOKIE['email'])){
             ?>
-            <a href="login.html" class="btn btn-danger d-flex">Sign In</a>
+            <a href="login.php" class="btn btn-danger d-flex">Sign In</a>
             
             <?php
           } else {
             ?>
             <div class="btn-group">
               <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" style="border-radius:30px;text-decoration:none">
-              <img src="img/user1.jpg" style="border-radius:100%;width:25px;text-decoration:none">
+              <img src="<?php echo $img; ?>" style="border-radius:100%;width:25px;text-decoration:none">
                 
               </button>
               <ul class="dropdown-menu dropdown-menu-lg-end" style="border-radius:15px"> 
                 <li><h5 class="dropdown-item disabled" style="color:black">
-                <img src="img/user1.jpg" style="border-radius:100%;width:50px;text-decoration:none">
+                <img src="<?php echo $img; ?>" style="border-radius:100%;width:50px;text-decoration:none">
                 <?php
-                echo "<strong style='text-decoration:none'>{$_COOKIE['nama']}</strong>";
+                echo "<strong style='text-decoration:none'>{$_COOKIE['username']}</strong>";
                 ?>
                 </h5>
                 </li>
-                <li><button class="dropdown-item" type="button" href="profile.php">Profile</button></li>
-                <li><button class="dropdown-item" type="button" href="settings.php">Setting</button></li>
+                <li><a class="dropdown-item active" type="button" href="profile.php">Profile</a></li>
+                <li><a class="dropdown-item" type="button" href="settings.php">Setting</a></li>
                 <center>
                 <div class="dropdown-divider" style="border-top: 2px solid black; width: 90%;"></div>
                 </center>
-                <li><button class="dropdown-item" type="button" href="logout.php">Sign Out</button></li>
+                <li><a class="dropdown-item red" type="button" href="logout.php">Sign Out</a></li>
               </ul>
             </div>
             
@@ -80,20 +100,24 @@
       <div class="row justify-item-center">
         <div class="col-lg-3 col-md-12 col-sm-12">
           <center>
-            <img src="img/user1.jpg" style="width: 70%; border-radius: 100%;border:2px solid white">
+            <img src="<?php echo $img; ?>" style="width: 70%; border-radius: 100%;border:2px solid white">
           </center>
           
         </div>
         <div class="col-lg-9 col-md-12 col-sm-12">
           <div class="row">
             <div class="col">
-              <h1>Lorem Ipsum</h1>
+              <?php
+                echo "<h1 style='text-decoration:none'>{$namadepan} {$namablkg}</h1>";
+              ?>
             </div>
           </div>
           <div class="dropdown-divider" style="border-top: 2px solid white;"></div>
           <div class="row">
             <div class="col">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris aliquet, magna vitae sagittis venenatis, purus tortor suscipit orci, at tempus mauris eros ac nisi. Morbi imperdiet blandit magna at ultricies. Phasellus ex metus, egestas a sapien vel, pharetra pulvinar augue. Duis dapibus tortor urna, ut consectetur felis rutrum sit amet. Nulla id pellentesque nisi.</p>
+              <?php
+                echo "<p>{$deskripsi}</p>";
+              ?>
             </div>
           </div>
           
@@ -109,6 +133,11 @@
       </div>
     </div> 
     <!-- end of profile -->
+    
 
   </body>
 </html>
+
+<?php
+}
+?>

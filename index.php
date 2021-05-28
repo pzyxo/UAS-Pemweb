@@ -1,3 +1,9 @@
+<?php
+include('data.php');
+
+
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -34,38 +40,45 @@
             <li class="nav-item">
               <a class="nav-link" href="activity.php">Activity</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="profile.php">Profile</a>
-            </li>
             
           </ul>
+          <style>
+            .dropdown-item.active {
+              background-color:#f78fb3;
+            }
+
+            .dropdown-item.red:hover {
+              background-color:red;
+              color:white;
+            }
+          </style>
           <?php
-          if(!isset($_COOKIE['nama'])){
+          if(!isset($_COOKIE['email'])){
             ?>
-            <a href="login.html" class="btn btn-danger d-flex">Sign In</a>
+            <a href="login.php" class="btn btn-danger d-flex">Sign In</a>
             
             <?php
           } else {
             ?>
             <div class="btn-group">
               <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" style="border-radius:30px;text-decoration:none">
-              <img src="img/user1.jpg" style="border-radius:100%;width:25px;text-decoration:none">
+              <img src="<?php echo $img; ?>" style="border-radius:100%;width:25px;text-decoration:none">
                 
               </button>
               <ul class="dropdown-menu dropdown-menu-lg-end" style="border-radius:15px"> 
                 <li><h5 class="dropdown-item disabled" style="color:black">
-                <img src="img/user1.jpg" style="border-radius:100%;width:50px;text-decoration:none">
+                <img src="<?php echo $img; ?>" style="border-radius:100%;width:50px;text-decoration:none">
                 <?php
-                echo "<strong style='text-decoration:none'>{$_COOKIE['nama']}</strong>";
+                echo "<strong style='text-decoration:none'>{$_COOKIE['username']}</strong>";
                 ?>
                 </h5>
                 </li>
-                <li><button class="dropdown-item" type="button" href="profile.php">Profile</button></li>
-                <li><button class="dropdown-item" type="button" href="settings.php">Setting</button></li>
+                <li><a class="dropdown-item" type="button" href="profile.php">Profile</a></li>
+                <li><a class="dropdown-item" type="button" href="settings.php">Setting</a></li>
                 <center>
                 <div class="dropdown-divider" style="border-top: 2px solid black; width: 90%;"></div>
                 </center>
-                <li><button class="dropdown-item" type="button" href="logout.php">Sign Out</button></li>
+                <li><a class="dropdown-item red" type="button" href="logout.php">Sign Out</a></li>
               </ul>
             </div>
             
@@ -175,6 +188,7 @@
                     <img src="img/twt.png" width="50px"></a>
                   <a href=" https://wa.me/6289522982606" target="__blank">
                     <img src="img/wa.png" width="50px"></a></p>
+              </div>
             </div>
           </div>
         <div class="footer-copyright text-center bg-light">© 2021 Copyright: pz-team</div>

@@ -1,6 +1,16 @@
+<?php
+if (!isset($_COOKIE['email'])){
+  header('Location: cek.php');
+} else {
+include('data.php');
+
+
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
+    <link rel="stylesheet" href="style.css">
     <link rel="icon" href="img/logo.png">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,38 +43,45 @@
             <li class="nav-item">
               <a class="nav-link" href="activity.php">Activity</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="profile.php">Profile</a>
-            </li>
             
           </ul>
+          <style>
+            .dropdown-item.active {
+              background-color:#f78fb3;
+            }
+
+            .dropdown-item.red:hover {
+              background-color:red;
+              color:white;
+            }
+          </style>
           <?php
-          if(!isset($_COOKIE['nama'])){
+          if(!isset($_COOKIE['email'])){
             ?>
-            <a href="login.html" class="btn btn-danger d-flex">Sign In</a>
+            <a href="login.php" class="btn btn-danger d-flex">Sign In</a>
             
             <?php
           } else {
             ?>
             <div class="btn-group">
               <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" style="border-radius:30px;text-decoration:none">
-              <img src="img/user1.jpg" style="border-radius:100%;width:25px;text-decoration:none">
+              <img src="<?php echo $img; ?>" style="border-radius:100%;width:25px;text-decoration:none">
                 
               </button>
               <ul class="dropdown-menu dropdown-menu-lg-end" style="border-radius:15px"> 
                 <li><h5 class="dropdown-item disabled" style="color:black">
-                <img src="img/user1.jpg" style="border-radius:100%;width:50px;text-decoration:none">
+                <img src="<?php echo $img; ?>" style="border-radius:100%;width:50px;text-decoration:none">
                 <?php
-                echo "<strong style='text-decoration:none'>{$_COOKIE['nama']}</strong>";
+                echo "<strong style='text-decoration:none'>{$_COOKIE['username']}</strong>";
                 ?>
                 </h5>
                 </li>
-                <li><button class="dropdown-item" type="button" href="profile.php">Profile</button></li>
-                <li><button class="dropdown-item" type="button" href="settings.php">Setting</button></li>
+                <li><a class="dropdown-item" type="button" href="profile.php">Profile</a></li>
+                <li><a class="dropdown-item" type="button" href="settings.php">Setting</a></li>
                 <center>
                 <div class="dropdown-divider" style="border-top: 2px solid black; width: 90%;"></div>
                 </center>
-                <li><button class="dropdown-item" type="button" href="logout.php">Sign Out</button></li>
+                <li><button class="dropdown-item red" type="button" href="logout.php">Sign Out</button></li>
               </ul>
             </div>
             
@@ -80,13 +97,24 @@
         <center>
         <div class="row" style="width: 90%;">
             
-            <div class="col" style="padding:1%;">
+            
+            <?php include('randmatch.php');
+            
+            while ($row1 = mysqli_fetch_array($result1)){
+              $username = (string)($row1['username']);
+              $gender = (string)($row1['gender']);
+              $namadepan = (string)($row1['nama_depan']);
+              $namablkg = (string)($row1['nama_belakang']);
+              $deskripsi = (string)($row1['deskripsi']);
+              $img = (string)($row1['img']);
+            ?>
+                <div class="col" style="padding:1%;">
                 <div class="card" style="width: 18rem;border-radius: 25px;padding: 5%;box-shadow: 5px 5px 5px #f78fb3;">
                     <center>
-                    <img src="img/user1.jpg" class="card-img-top" alt="..." style="border-radius: 100%;width: 15rem;">
+                    <img src=<?php echo $img; ?> class="card-img-top" alt="..." style="border-radius: 100%;width: 15rem;border:1px solid black">
                     </center>
                     <div class="card-body">
-                      <h3 class="card-title">Lorem</h3>
+                      <h3 class="card-title"><?php echo "{$username}"; ?></h3>
                       <div class="row align-items-center">
                           <div class="col-3">
                             <a href="#"><img src="img/love.png" width="50rem"></a>
@@ -95,61 +123,51 @@
                             <a href="#"><img src="img/pm.png" width="50rem"></a>
                           </div>
                           <div class="col-6">
-                            <a href="profile.html" class="btn btn-dark" style="background-color: #f8a5c2; border: none;">PROFILE</a>
+                            <a href="profile.php" class="btn btn-dark" style="background-color: #f8a5c2; border: none;">PROFILE</a>
                           </div>
                       </div>
                     </div>
                 </div>
             </div>
             <br>
-            <div class="col" style="padding:1%;">
-                <div class="card" style="width: 18rem;border-radius: 25px;padding: 5%;box-shadow: 5px 5px 5px #f78fb3;">
-                    <center><img src="img/user2.jpeg" class="card-img-top" alt="..." style="border-radius: 100%;width: 15rem;"></center>
-                    
-                    <div class="card-body">
-                      <h3 class="card-title">Ipsum</h3>
-                      <div class="row align-items-center">
-                          <div class="col-3">
-                            <a href="#"><img src="img/love.png" width="50rem"></a>
-                          </div>
-                          <div class="col-3">
-                            <a href="#"><img src="img/pm.png" width="50rem"></a>
-                          </div>
-                          <div class="col-6">
-                            <a href="profile.html" class="btn btn-dark" style="background-color: #f8a5c2; border: none;">PROFILE</a>
-                          </div>
-                      </div>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <div class="col" style="padding:1%;">
-                <div class="card" style="width: 18rem;border-radius: 25px;padding: 5%;box-shadow: 5px 5px 5px #f78fb3;">
-                    <center><img src="img/user3.jpeg" class="card-img-top" alt="..." style="border-radius: 100%;width: 15rem;"></center>
-                    
-                    <div class="card-body">
-                      <h3 class="card-title">Dolor</h3>
-                      <div class="row align-items-center">
-                          <div class="col-3">
-                            <a href="#"><img src="img/love.png" width="50rem"></a>
-                          </div>
-                          <div class="col-3">
-                            <a href="#"><img src="img/pm.png" width="50rem"></a>
-                          </div>
-                          <div class="col-6">
-                            <a href="profile.html" class="btn btn-dark" style="background-color: #f8a5c2; border: none;">PROFILE</a>
-                          </div>
-                      </div>
-                    </div>
-                </div>
-            </div>
+            <?php } ?>
             
         </div>
         <p style="padding-top:2%"><h1 style="color: white;"><strong>FIND YOUR MATCH</strong></h1>
-            <a href="match.html" class="btn btn-dark" style="background-color: #f78fb3; border: 1px solid white;">Find more</a></p>
+            <a href="match.php" class="btn btn-dark" style="background-color: #f78fb3; border: 1px solid white;">Find more</a></p>
     </center>
     </div>
 
     <!-- end of match body -->
+    <footer class="page-footer">
+        <center>
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-8 col-md-8 col-sm-12">
+                <br>
+                <h6 class="text-uppercase font-weight-bold">Additional Information</h6>
+                <p>Soul Match is an online dating web where people will choose whoever they want to date with. This web is made for you that have no much time to offline dating and too shy to ask for a date. User's privacy is protected, and there is no bot here. Also, users can save their time for meeting or dating right people..</p>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-12">
+                <br>
+                <h6 class="text-uppercase font-weight-bold">Find any problems? Contact us</h6>
+                <p><a href="https://instagram.com/fatma_armi" target="__blank">
+                  <img src="img/ig.png" width="50px"></a>
+                  <a href="https://www.facebook.com/fatma.armi.35" target="__blank">
+                    <img src="img/fb.png" width="50px"></a>
+                  <a href="https://twitter.com/fatma_armi" target="__blank">
+                    <img src="img/twt.png" width="50px"></a>
+                  <a href=" https://wa.me/6289522982606" target="__blank">
+                    <img src="img/wa.png" width="50px"></a></p>
+            </div>
+            </div>
+          </div>
+        <div class="footer-copyright text-center bg-light">© 2021 Copyright: pz-team</div>
+        </center>
+      </footer>
   </body>
 </html>
+
+<?php
+}
+?>

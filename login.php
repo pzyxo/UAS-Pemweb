@@ -1,6 +1,13 @@
- <!doctype html>
+<?php
+if(isset($_COOKIE['email'])){
+  header("Location: index.php");
+} else {
+?>
+
+<!doctype html>
 <html lang="en">
   <head>
+    <link rel="stylesheet" href="style.css">
     <link rel="icon" href="img/logo.png">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,57 +40,32 @@
             <li class="nav-item">
               <a class="nav-link" href="activity.php">Activity</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="profile.php">Profile</a>
-            </li>
             
           </ul>
-            <?php
-          if(!isset($_COOKIE['nama'])){
-            ?>
-            <a href="login.html" class="btn btn-danger d-flex">Sign In</a>
-            
-            <?php
-          } else {
-            ?>
-            <div class="btn-group">
-              <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" style="border-radius:30px;text-decoration:none">
-              <img src="img/user1.jpg" style="border-radius:100%;width:25px;text-decoration:none">
-                
-              </button>
-              <ul class="dropdown-menu dropdown-menu-lg-end" style="border-radius:15px"> 
-                <li><h5 class="dropdown-item disabled" style="color:black">
-                <img src="img/user1.jpg" style="border-radius:100%;width:50px;text-decoration:none">
-                <?php
-                echo "<strong style='text-decoration:none'>{$_COOKIE['nama']}</strong>";
-                ?>
-                </h5>
-                </li>
-                <li><button class="dropdown-item" type="button" href="profile.php">Profile</button></li>
-                <li><button class="dropdown-item" type="button" href="settings.php">Setting</button></li>
-                <center>
-                <div class="dropdown-divider" style="border-top: 2px solid black; width: 90%;"></div>
-                </center>
-                <li><button class="dropdown-item" type="button" href="logout.php">Sign Out</button></li>
-              </ul>
-            </div>
-            
-            <?php
-          }
-          ?>
         </div>
       </div>
     </nav>
     <!-- end of navbar -->
+    <!-- login form  -->
     <div class='container' style="position: sticky;padding-top: 2%;left: 5%;right:5%;text-align:center;width: 90%">
     	<div class='row'>
     		<div class="col-lg-5 col-sm-12 col-md-12" style="padding: 5%;">
-    			<div class='card' style="margin: 5%;border-radius: 50px;border:3px solid white; overflow-x: hidden;background-color: #f8a5c2"><img src="img/background.png" style="width:100%;">
+        
+    			<div class='card' style="margin: 5%;border-radius: 50px;border:3px solid white; overflow-x: hidden;background-color: #f8a5c2">
+          <img src="img/background.png" style="width:100%;">
     				<p><h3>Sign In</h3></p>
     				<center><p>
-    				<form method="post" action="login.php" style="width: 70%;">
-    					<input type='email' name='email' class="form-control" placeholder="email"><br>
-    					<input type="password" name='pass' class="form-control" placeholder="password"><br>
+            <?php
+              if(isset($_GET['notif'])){
+              ?>
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                Username atau password salah!!
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            <?php } ?>
+    				<form method="post" action="login-proc.php" style="width: 70%;">
+    					<input type='email' name='email' class="form-control" placeholder="Email"><br>
+    					<input type="password" name='pass' class="form-control" placeholder="Password"><br>
     					<input type="checkbox" class="form-check-input" name="remembercheck">
               <label class="form-check-label bordered" for="remembercheck"></label>Remember Me<br>
               <br><p><button type="submit" name="submit" class="btn btn-light" >Sign In</button>
@@ -98,14 +80,17 @@
           </div>
         </div>
     		<div class="col-lg-5 col-sm-12 col-md-12" style="padding: 5%">
-    			<div class='card' style="margin: 5%;border-radius: 50px;border:3px solid white; overflow-x: hidden;background-color: #f8a5c2"><img src="img/sign.png" style="width:100%;">
+    			<div class='card' style="margin: 5%;border-radius: 50px;border:3px solid white; overflow-x: hidden;background-color: #f8a5c2">
+          <img src="img/sign.png" style="width:100%;">
     				<p><h3>Sign Up</h3></p>
     				<center><p>
-    				<form method="post" action="login.php" style="width: 70%;">
-    					<input type='email' name='email' class="form-control" placeholder="email"><br>
-    					<input type="text" name="uname" class="form-control" placeholder="username"><br>
-    					<input type="password" name='pass' class="form-control" placeholder="password"><br>
-    					<input type="password" name='pass2' class="form-control" placeholder="confirm password"><br>
+    				<form method="post" action="signup.php" style="width: 70%;">
+    					<input type='email' name='email' class="form-control" placeholder="Email"><br>
+    					<input type="text" name="username" class="form-control" placeholder="Username"><br>
+              <input type="text" name="namadpn" class="form-control" placeholder="Nama Depan"><br>
+              <input type="text" name="namablkg" class="form-control" placeholder="Nama Belakang"><br>
+    					<input type="password" name='pass' class="form-control" placeholder="Password"><br>
+              <input type="text" name='deskripsi' class="form-control" placeholder="Deskripsi Singkat"><br>
     					<button type="submit" name="submit" class="btn btn-light">Sign Up</button>
     				</form>
     			</p></center>
@@ -113,6 +98,7 @@
     		</div>
     	</div>
     </div>
+    <!-- end of login form -->
     <!-- footer -->
     <footer class="page-footer">
       <center>
@@ -142,3 +128,8 @@
     <!-- end of footer -->
   </body>
 </html>
+
+<?php
+}
+
+?>

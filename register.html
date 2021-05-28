@@ -44,54 +44,14 @@
     </nav>
     <!-- end of navbar -->
     <div class='container' style="position: sticky;padding-top:0%;left: 5%;right:5%;text-align:center;width: 90%">
-    	<div class='row'>
-    		<div class="col-lg-12 col-sm-12 col-md-12" style="padding: 5%;">
-    			<div class='card' style="margin: 5%;border-radius: 50px;border:3px solid white; overflow-x: hidden;background-color: #f8a5c2">
-    				<p><h3>Silahkan Lengkapi Profil Anda !</h3></p>
-    				<center><p>
-					<div class="row">
-						<div class="col">
-							<form method="post" action="login.php" style="width: 70%;">
-								<input type='text' name='nama' class="form-control" placeholder="nama"><br>
-								<input type="text" name='asal' class="form-control" placeholder="asal"><br>
-								<div class="row">
-							</form>
-									<div class="col">
-										<form method="post" action="login.php" style="width: 100%;">
-											<input type="text" name='tempat lahir' class="form-control" placeholder="tempat lahir">
-										</form>
-									</div>
-									<div class='col'>	
-										<form method="post" action="login.php" style="width: 100%;">	
-											<input type="date" name='tanggal lahir' class="form-control" placeholder="tanggal lahir"><br>
-										</form>
-									</div>
-								</div>
-							<form method="post" action="login.php" style="width: 70%;">
-								<input type="text" name='hobi' class="form-control" placeholder="hobi"><br>
-								<input type="text" name='pekerjaan' class="form-control" placeholder="pekerjaan"><br>
-								<input type="text" name='riwayat pendidikan' class="form-control" placeholder="riwayat pendidikan"><br>
-								<input type="text" name='riwayat kesehatan' class="form-control" placeholder="riwayat kesehatan"><br>
-								<br>
-							</form>
-						</div>
-						<div class="col">
-							<form method="post" action="login.php" style="width: 70%;">
-								<input type='text' name='agama' class="form-control" placeholder="agama"><br>
-								<input type="text" name='goldar' class="form-control" placeholder="gol darah"><br>
-								<input type="text" id='pria' name='gender'  class="form-control" placeholder="gender"><br>
-								<input type="text" name='tinggi badan' class="form-control" placeholder="tinggi badan"><br>
-								<input type="text" name='berat badan' class="form-control" placeholder="berat badan"><br>
-								<input type="text" name='foto' class="form-control" placeholder="upload foto" style="width: 100%;"><br>
-								<br>
-							</form>
-						</div>
-					</div>
-					<br><p><button type="submit" name="submit" class="btn btn-light" >Submit</button>
-    			</p></center>
-    			</div>
-    		</div>
-    	</div>
+    	<form action="signup.php" method="post">
+        <input type='email' name='email' class="form-control" placeholder="Email"><br>
+    		<input type="text" name="username" class="form-control" placeholder="Username"><br>
+        <input type="text" name="namadpn" class="form-control" placeholder="Nama Depan"><br>
+        <input type="text" name="namablkg" class="form-control" placeholder="Nama Belakang"><br>
+    		<input type="password" name='pass' class="form-control" placeholder="Password"><br>
+        <input type="">
+      </form>
     </div>
     <center>
       <footer class="page-footer">
