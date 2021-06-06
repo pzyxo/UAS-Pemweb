@@ -1,7 +1,9 @@
 <?php
-if(isset($_COOKIE['email'])){
-  header("Location: index.php");
+if (isset($_COOKIE['email'])){
+  header('Location: index.php');
 } else {
+
+
 ?>
 
 <!doctype html>
@@ -36,6 +38,7 @@ if(isset($_COOKIE['email'])){
     }
 
     </style>
+
     <title>Soul Match - Find Your Mate Here</title>
   </head>
   <body style="background-color: #f8a5c2;overflow-x: hidden;">
@@ -63,50 +66,101 @@ if(isset($_COOKIE['email'])){
             </li>
             
           </ul>
+          
         </div>
       </div>
     </nav>
     <!-- end of navbar -->
-    <!-- login form  -->
+    <!-- tampilan activity -->
     <div class='container' style="position: sticky;padding-top: 0;left: 5%;right:5%;text-align:center;width: 90%">
     	<div class='row'>
       <center>
     		<div class="col-lg-8 col-sm-12 col-md-12" style="padding: 2% 5% 5% 5%;">
         
     			<div class='card' style="margin: 5%;border-radius: 50px;border:3px solid white; overflow-x: hidden;background-color: #f8a5c2">
-          <img src="img/background.png" style="width:100%;">
-    				<p><h3>Sign In</h3></p>
+          <img src="img/sign.png" style="width:100%;">
+    				<p><h3>Sign Up</h3></p>
     				<center><p>
             <?php
-              if(isset($_GET['notif'])){
+              if(isset($_GET['failed'])){
               ?>
               <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                Wrong Username or Password!!
+                Register Failed!
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>
-            <?php } 
-              elseif(isset($_GET['success'])){
+            <?php }
+            elseif(isset($_GET['failedid'])) {
               ?>
-              <div class="alert alert-success alert-dismissible fade show" role="alert">
-                Registration Success, Please Sign In
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                Username / Email Already Registered
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>
             <?php } ?>
-    				<form method="post" action="login-proc.php" style="width: 85%;">
+    				<form method="post" action="signup.php" style="width: 85%;" enctype="multipart/form-data">
+              <div class="form-floating">
+                <input type="text" class="form-control" id="floatingUsername" placeholder="Username" name="username">
+                <label for="floatingUsername">Username</label>
+              </div>
+              <br>
               <div class="form-floating">
                 <input type="email" class="form-control" id="floatingEmail" placeholder="Email" name="email">
                 <label for="floatingEmail">Email</label>
               </div>
               <br>
               <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="pass">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
                 <label for="floatingPassword">Password</label>
               </div>
               <br>
-              <p><button type="submit" name="submit" class="btn btn-light button1-pro" >Sign In</button>
-              <p>Don't have an account yet? 
-              <a href="register.php" class="btn btn-danger btn-sm button1-pro">Register Now</a></p>
-              
+              <div class="row g-3">
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingFirst" placeholder="First Name" name="namadpn">
+                    <label for="floatingFirst">First Name</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingLast" placeholder="Last Name" name="namablkg">
+                    <label for="floatingLast">Last Name</label>
+                  </div>
+                </div>
+              </div>
+              <br>
+                
+                <div class="row" style="text-align:left">
+                    <div class="col">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="gender" id="pria" value="pria">
+                          <label class="form-check-label" for="pria">
+                            Male
+                          </label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="gender" id="wanita" value="wanita">
+                          <label class="form-check-label" for="wanita">
+                            Female
+                          </label>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="form-floating">
+                  <textarea class="form-control" placeholder="Describe yourself" id="floatingTextarea" name="deskripsi" style="resize:none;height:150px"></textarea>
+                  <label for="floatingTextarea">Description</label>
+                </div>
+                <br>
+                <div class="mb-3">
+                  <label for="formFile" class="form-label">Upload Your Profile Photo</label>
+                  <input class="form-control" type="file" id="formFile" name="foto">
+                </div>
+                <br>
+                <p><button type="submit" name="submit" class="btn btn-light button1-pro" >Sign Up</button>
+                <p>Already have an account yet? 
+                <a href="login.php" class="btn btn-danger btn-sm button1-pro">Sign In</a></p>
+                </div>
     				</form>
     			</p></center>
     			</div>
@@ -114,38 +168,11 @@ if(isset($_COOKIE['email'])){
     		</div>
     	</div>
     </div>
-    <!-- end of login form -->
-    <!-- footer -->
-    <footer class="page-footer">
-      <center>
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8 col-md-8 col-sm-12">
-              <br>
-              <h6 class="text-uppercase font-weight-bold">Additional Information</h6>
-              <p>Soul Match is an online dating web where people will choose whoever they want to date with. This web is made for you that have no much time to offline dating and too shy to ask for a date. User's privacy is protected, and there is no bot here. Also, users can save their time for meeting or dating right people..</p>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12">
-              <br>
-              <h6 class="text-uppercase font-weight-bold">Find any problems? Contact us</h6>
-              <p><a href="https://instagram.com/fatma_armi" target="__blank">
-                <img src="img/ig.png" width="50px"></a>
-                <a href="https://www.facebook.com/fatma.armi.35" target="__blank">
-                  <img src="img/fb.png" width="50px"></a>
-                <a href="https://twitter.com/fatma_armi" target="__blank">
-                  <img src="img/twt.png" width="50px"></a>
-                <a href=" https://wa.me/6289522982606" target="__blank">
-                  <img src="img/wa.png" width="50px"></a></p>
-          </div>
-        </div>
-      <div class="footer-copyright text-center bg-light" style="border-radius: 15px 15px 0 0">© 2021 Copyright: pz-team</div>
-      </center>
-    </footer>
-    <!-- end of footer -->
+    <!-- end of tampilan activity -->
+    
   </body>
 </html>
 
 <?php
 }
-
 ?>

@@ -41,7 +41,7 @@ include('data.php');
               <a class="nav-link" href="messages.php">Messages</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="activity.php">Activity</a>
+              <a class="nav-link" href="activity.php">Activity</a>
             </li>
             
           </ul>
@@ -77,11 +77,11 @@ include('data.php');
                 </h5>
                 </li>
                 <li><a class="dropdown-item" type="button" href="profile.php">Profile</a></li>
-                <li><a class="dropdown-item" type="button" href="settings.php">Setting</a></li>
+                <li><a class="dropdown-item active" type="button" href="settings.php">Setting</a></li>
                 <center>
                 <div class="dropdown-divider" style="border-top: 2px solid black; width: 90%;"></div>
                 </center>
-                <li><a class="dropdown-item red" type="button" href="logout.php">Sign Out</a></li>
+                <li><button class="dropdown-item red" type="button" href="logout.php">Sign Out</button></li>
               </ul>
             </div>
             
@@ -94,8 +94,8 @@ include('data.php');
     <!-- end of navbar -->
     <!-- tampilan activity -->
     <div class="container-fluid" style="width: 80%;background-color: white;position: sticky; margin-top: 5%;padding:2%;border-radius: 5px;text-align:center">
-    <h1>I-I'm sorry, b-but this page is still under construction >///<</h1>
-    <img src="img/error.gif" width="250px">
+        <h1>I-I'm sorry, b-but this page is still under construction >///<</h1>
+        <img src="img/error.gif" width="250px">
     </div>
     <!-- end of tampilan activity -->
     

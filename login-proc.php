@@ -35,7 +35,6 @@ if(isset($_POST['submit'])){
         
         }else{
             header('Location: login.php?notif=true');
-            echo "Invalid username and password";
         }
 
     }

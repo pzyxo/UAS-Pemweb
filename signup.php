@@ -5,23 +5,40 @@ include('dbconfig.php');
 if(isset($_POST['submit'])){
 
     $email = $_POST['email'];
-    $pass = $_POST['pass'];
+    $pass = $_POST['password'];
     $username = $_POST['username'];
     $namadepan = $_POST['namadpn'];
     $namablkg = $_POST['namablkg'];
+    $gender = $_POST['gender'];
     $deskripsi = $_POST['deskripsi'];
+
+    $querycheck = "SELECT * FROM login";
+    $querycheck2 = "SELECT * FROM datadiri";
+
+    $queryc = (mysqli_query($connect,$querycheck));
+    $queryc2 = (mysqli_query($connect,$querycheck2));
+
+    
+    $rowcheck = mysqli_fetch_array($queryc);
+    $rowcheck2 = mysqli_fetch_array($queryc2);
+
+
+    while ($rowcheck = mysqli_fetch_array($queryc)){
+        if ($username == $rowcheck['username'] | $email == $rowcheck['email']){
+            header("Location: register.php?failedid=true");
+        }
+    }
     
     
     $query1 = "INSERT INTO login (email, password) VALUES ('{$email}','{$pass}')";
-    $query2 = "INSERT INTO datadiri (username, email, nama_depan, nama_belakang, deskripsi) VALUES ('{$username}','{$email}','{$namadepan}','{$namablkg}', '{$deskripsi}')";
+    $query2 = "INSERT INTO datadiri (username, email, nama_depan, nama_belakang, gender, deskripsi) VALUES ('{$username}','{$email}','{$namadepan}','{$namablkg}', '{$gender}','{$deskripsi}')";
     // $result1 = mysqli_query($connect,$query1);
     // $result2 = mysqli_query($connect,$query2);
 
     if(mysqli_query($connect,$query1) && mysqli_query($connect,$query2)){
-        echo ("Registrasi Berhasil");
-        echo ("<a href='login.php'> Silahkan login </a>");
+        header("Location: login.php?success=true");
     } else {
-        header("Location: login.php");
+        header("Location: register.php?failed=true");
     }
     
     

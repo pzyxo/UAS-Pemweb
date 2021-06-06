@@ -20,6 +20,6 @@ $namadepan = (string)($row2['nama_depan']);
 $namablkg = (string)($row2['nama_belakang']);
 $deskripsi = (string)($row2['deskripsi']);
 $img = (string)($row2['img']);
-
+$email = (string)($row1['email']);
 mysqli_close($connect);
 ?>

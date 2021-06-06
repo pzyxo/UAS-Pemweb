@@ -81,7 +81,7 @@ include('data.php');
                 <center>
                 <div class="dropdown-divider" style="border-top: 2px solid black; width: 90%;"></div>
                 </center>
-                <li><button class="dropdown-item red" type="button" href="logout.php">Sign Out</button></li>
+                <li><a class="dropdown-item red" type="button" href="logout.php">Sign Out</a></li>
               </ul>
             </div>
             
@@ -98,12 +98,15 @@ include('data.php');
     <div class="d-flex align-items-start">
       <style>
         .nav-link {
-          
+          transition: ease 0.2s;
           color: black;
         }
 
         .nav-link:hover {
+          transform: scale(1.1);
           color: white;
+          background-color:#bb2d3b;
+          border-radius: 15px;
         }
 
         .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
@@ -113,7 +116,7 @@ include('data.php');
         }
       </style>
       <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="font-size: 2rem;">
-        <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">
+        <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" href="messages.php/?id=<?php echo $username;?>">
           <div class="row align-items-center">
             <div class="col-4">
                 <img src="img/couple1.jpg" width="50px" style="border-radius: 100%;">
@@ -158,7 +161,12 @@ include('data.php');
         </button>
       </div>
       <div class="tab-content" id="v-pills-tabContent">
-        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">Lorem</div>
+        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+          <form method="post" action="chatperson.php">
+            <input type='text' name='isichat'>
+            <button type='submit' name='send'>Kirim</button>
+          </form>
+        </div>
         <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">Ipsum</div>
         <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">Dolor</div>
         <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">Amet</div>

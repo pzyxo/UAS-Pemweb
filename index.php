@@ -1,5 +1,5 @@
 <?php
-include('data.php');
+
 
 
 ?>
@@ -54,11 +54,14 @@ include('data.php');
           </style>
           <?php
           if(!isset($_COOKIE['email'])){
+            
             ?>
+            
             <a href="login.php" class="btn btn-danger d-flex">Sign In</a>
             
             <?php
           } else {
+            include('data.php');
             ?>
             <div class="btn-group">
               <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" style="border-radius:30px;text-decoration:none">

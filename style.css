@@ -9,3 +9,26 @@
 	border-radius: 5px;
 	border: 1px solid white;
 }
+
+.button1-pro {
+	transition: ease 0.1s;
+}
+
+.button1-pro:hover {
+	transform: scale(1.1);
+	border-radius: 5px;
+	z-index: 5;
+}
+
+.button2-pro {
+	transition: ease 0.1s;
+}
+
+.button2-pro:hover {
+	background-color:#f78fb3 !important;
+	transform: scale(1.1);
+	border-radius: 5px;
+	z-index: 5;
+}
+
+

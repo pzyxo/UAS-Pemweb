@@ -20,7 +20,7 @@ include('data.php');
 
     <title>Soul Match - Find Your Mate Here</title>
   </head>
-  <body style="background-color: #f8a5c2;overflow-x: hidden;">
+  <body style="background-color: #f8a5c2;">
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #f78fb3">
       <div class="container-fluid">
@@ -30,7 +30,7 @@ include('data.php');
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 navbar-right">
             <li class="nav-item">
               <a class="nav-link" href="index.php">Home</a>
             </li>
@@ -81,7 +81,7 @@ include('data.php');
                 <center>
                 <div class="dropdown-divider" style="border-top: 2px solid black; width: 90%;"></div>
                 </center>
-                <li><button class="dropdown-item red" type="button" href="logout.php">Sign Out</button></li>
+                <li><a class="dropdown-item red" type="button" href="logout.php">Sign Out</a></li>
               </ul>
             </div>
             
@@ -93,7 +93,40 @@ include('data.php');
     </nav>
     <!-- end of navbar -->
     <!-- match body -->
-    <div class="container-fluid" style="position: sticky;padding-top: 1%;">
+    <style>
+
+    .card {
+      transition: ease 0.5s;
+    }
+    .card:hover {
+      transform: scale(1.2);
+      border-radius: 5px;
+      z-index: 5;
+    }
+
+    .button1-pro {
+      transition: ease 0.1s;
+    }
+    .button1-pro:hover {
+      transform: scale(1.1);
+      border-radius: 5px;
+      z-index: 5;
+    }
+
+    .button2-pro {
+      transition: ease 0.1s;
+    }
+    .button2-pro:hover {
+      background-color:#f78fb3 !important;
+      transform: scale(1.1);
+      border-radius: 5px;
+      z-index: 5;
+    }
+
+    
+
+    </style>
+    <div class="container-fluid" style="position: sticky;padding-top: 3%;">
         <center>
         <div class="row" style="width: 90%;">
             
@@ -111,19 +144,21 @@ include('data.php');
                 <div class="col" style="padding:1%;">
                 <div class="card" style="width: 18rem;border-radius: 25px;padding: 5%;box-shadow: 5px 5px 5px #f78fb3;">
                     <center>
-                    <img src=<?php echo $img; ?> class="card-img-top" alt="..." style="border-radius: 100%;width: 15rem;border:1px solid black">
+                    <img src=<?php echo $img; ?> class="card-img-top" alt="..." style="border-radius: 100%;width: 15rem;border:1px solid white">
                     </center>
                     <div class="card-body">
-                      <h3 class="card-title"><?php echo "{$username}"; ?></h3>
+                      <h3 class="card-title"><?php echo "{$namadepan}"; ?></h3>
                       <div class="row align-items-center">
                           <div class="col-3">
-                            <a href="#"><img src="img/love.png" width="50rem"></a>
+                            <a href="#"><img src="img/love.png" width="50rem" class="button1-pro"></a>
                           </div>
                           <div class="col-3">
-                            <a href="#"><img src="img/pm.png" width="50rem"></a>
+                            <a href="#"><img src="img/pm.png" width="50rem" class="button1-pro"></a>
                           </div>
                           <div class="col-6">
-                            <a href="profile.php" class="btn btn-dark" style="background-color: #f8a5c2; border: none;">PROFILE</a>
+                          <?php
+                            echo "<a href='profileid.php?id={$username}' class='btn btn-dark button2-pro' style='background-color: #f8a5c2; border: none;'>PROFILE</a>";
+                          ?>
                           </div>
                       </div>
                     </div>
@@ -134,37 +169,12 @@ include('data.php');
             
         </div>
         <p style="padding-top:2%"><h1 style="color: white;"><strong>FIND YOUR MATCH</strong></h1>
-            <a href="match.php" class="btn btn-dark" style="background-color: #f78fb3; border: 1px solid white;">Find more</a></p>
+            <a href="match.php" class="btn btn-dark button2-pro" style="background-color: #f78fb3; border: 1px solid white;border-radius:15px">Find more</a></p>
     </center>
     </div>
 
     <!-- end of match body -->
-    <footer class="page-footer">
-        <center>
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-8 col-md-8 col-sm-12">
-                <br>
-                <h6 class="text-uppercase font-weight-bold">Additional Information</h6>
-                <p>Soul Match is an online dating web where people will choose whoever they want to date with. This web is made for you that have no much time to offline dating and too shy to ask for a date. User's privacy is protected, and there is no bot here. Also, users can save their time for meeting or dating right people..</p>
-              </div>
-              <div class="col-lg-4 col-md-4 col-sm-12">
-                <br>
-                <h6 class="text-uppercase font-weight-bold">Find any problems? Contact us</h6>
-                <p><a href="https://instagram.com/fatma_armi" target="__blank">
-                  <img src="img/ig.png" width="50px"></a>
-                  <a href="https://www.facebook.com/fatma.armi.35" target="__blank">
-                    <img src="img/fb.png" width="50px"></a>
-                  <a href="https://twitter.com/fatma_armi" target="__blank">
-                    <img src="img/twt.png" width="50px"></a>
-                  <a href=" https://wa.me/6289522982606" target="__blank">
-                    <img src="img/wa.png" width="50px"></a></p>
-            </div>
-            </div>
-          </div>
-        <div class="footer-copyright text-center bg-light">© 2021 Copyright: pz-team</div>
-        </center>
-      </footer>
+    
   </body>
 </html>
 

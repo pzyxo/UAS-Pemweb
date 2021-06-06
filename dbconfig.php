@@ -3,6 +3,6 @@
 $dbuser = "root";
 $dbpass = "";
 $dbhost = "localhost";
-$dbname = "soul-match";
+$dbname = "soulmatch";
 
 $connect = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);

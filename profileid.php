@@ -2,9 +2,8 @@
 if (!isset($_COOKIE['email'])){
   header('Location: cek.php');
 } else {
-include('data.php');
-
-
+  include('data.php');
+  include('dataprofile.php');
 ?>
 
 
@@ -57,20 +56,6 @@ include('data.php');
               background-color:red;
               color:white;
             }
-
-           
-            .photoprofile:hover{
-              z-index:5;
-            }
-
-            .button1-pro {
-              transition: ease 0.1s;
-            }
-            .button1-pro:hover {
-              transform: scale(1.1);
-              border-radius: 5px;
-              z-index: 5;
-            }
           </style>
           <?php
           if(!isset($_COOKIE['email'])){
@@ -110,11 +95,26 @@ include('data.php');
     </nav>
     <!-- end of navbar -->
     <!-- start of profile -->
-    <div class="container-fluid" style="color: white; width: 80%; position:sticky; padding-top: 5%; left: 1%;right: 1%;">
+    <div class="container-fluid" style="color: white; width: 80%; position:sticky; padding-top: 2%; left: 1%;right: 1%;">
+    <div class="row">
+      <div class="col">
+        <a href="match.php" class="btn btn-danger">Back</a>
+      </div>
+    </div>
+    <br>
+    <?php 
+    if(!isset($_GET['id'])){
+      echo "<h1>Pengguna Tidak Ditemukan</h1>";
+      echo "<h3>Kembali ke pencarian</h3>";
+      echo "<a href='match.php' class='btn btn-danger'>Find Match</a>";
+    } else {
+    
+    ?>
+    
       <div class="row justify-item-center">
         <div class="col-lg-3 col-md-12 col-sm-12">
           <center>
-            <img src="<?php echo $img; ?>" style="width: 70%; border-radius: 100%;border:2px solid white" class="photoprofile button1-pro">
+            <img src="<?php echo $imgp; ?>" style="width: 70%; border-radius: 100%;border:2px solid white">
           </center>
           
         </div>
@@ -122,7 +122,7 @@ include('data.php');
           <div class="row">
             <div class="col">
               <?php
-                echo "<h1 style='text-decoration:none'>{$namadepan} {$namablkg}</h1>";
+                echo "<h1 style='text-decoration:none'>{$namadepanp} {$namablkgp}</h1>";
               ?>
             </div>
           </div>
@@ -130,7 +130,7 @@ include('data.php');
           <div class="row">
             <div class="col">
               <?php
-                echo "<p>{$deskripsi}</p>";
+                echo "<p>{$deskripsip}</p>";
               ?>
             </div>
           </div>
@@ -140,61 +140,6 @@ include('data.php');
       <center>
         <div class="dropdown-divider" style="border-top: 2px solid white;"></div>
       </center>
-      <div class="row">
-        <?php if(!isset($_GET['change'])) {?>
-        <div class="col">
-          <a href="profile.php?change=true" class="btn btn-danger button1-pro">Update Profile</a>
-        </div>
-        <?php } else { ?>
-        <div class="col">
-          <a href="profile.php" class="btn btn-danger button1-pro" style="border-radius: 35px 10px 10px 35px">Back</a>
-        </div>
-        <?php } ?>
-        
-      </div>
-      <br>
-      <div class="row">
-        <?php if(isset($_GET['change'])){ ?>
-      <form action="edit.php" method="post" name="update">
-        <table width="25%" border="0" class="table table-danger">
-          <tr>
-            <td>ID Karyawan</td>
-            <td><input type="text" name="id" value="<?php echo $username;?>" class="form-control form-control-sm"></td>
-          </tr>
-          <tr>
-            <td>Nama</td>
-            <td><input type="text" name="nama" value="<?php echo $namadepan;?>"></td>
-          </tr>
-          <tr>
-            <td>Email</td>
-            <td><input type="email" name="email" value="<?php echo $email;?>"></td>
-          </tr>	
-            <td>Telepon</td>
-            <td><input type="text" name="telepon" value="<?php echo $namablkg;?>"></td>
-          <tr>
-            <td>Alamat</td>
-            <td><input type="text" name="alamat" value="<?php echo $deskripsi;?>"></td>
-          </tr>
-          <tr>
-            <td>Jenis Kelamin</td>
-            <td><input type="radio" id="pria" name="gender" <?php if($gender == 'pria'){?> checked="true" <?php } ?> >Pria
-            <input type="radio" id="pria" name="gender" <?php if($gender == 'wanita'){?> checked="true" <?php }?> >Wanita</td>
-          </tr>
-          <!-- </tr>
-            <td>Tempat Lahir</td>
-            <td><input type="text" name="tempat_lahir" value="<?php echo $tempat_lahir;?>"></td>
-          </tr>
-          <tr>
-            <td>Tanggal Lahir</td>
-            <td><input type="date" name="tanggal_lahir" value="<?php echo $tanggal_lahir;?>"></td>
-          </tr> -->
-          <tr>
-            <td></td>
-            <td><input type="submit" name="update" value="update" class="btn btn-danger"></td>
-          </tr>
-        </table>
-      </form>
-      <?php } ?>
     </div> 
     <!-- end of profile -->
     
@@ -203,5 +148,6 @@ include('data.php');
 </html>
 
 <?php
+    }
 }
 ?>
