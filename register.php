@@ -75,9 +75,9 @@ if (isset($_COOKIE['email'])){
     <div class='container' style="position: sticky;padding-top: 0;left: 5%;right:5%;text-align:center;width: 90%">
     	<div class='row'>
       <center>
-    		<div class="col-lg-8 col-sm-12 col-md-12" style="padding: 2% 5% 5% 5%;">
+    		<div class="col-lg-8 col-sm-12 col-md-12 " style="padding: 2% 5% 5% 5%;">
         
-    			<div class='card' style="margin: 5%;border-radius: 50px;border:3px solid white; overflow-x: hidden;background-color: #f8a5c2">
+    			<div class="card needs-validation" style="margin: 5%;border-radius: 50px;border:3px solid white; overflow-x: hidden;background-color: #f8a5c2" novalidate>
           <img src="img/sign.png" style="width:100%;">
     				<p><h3>Sign Up</h3></p>
     				<center><p>
@@ -89,67 +89,78 @@ if (isset($_COOKIE['email'])){
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>
             <?php }
-            elseif(isset($_GET['failedid'])) {
+            elseif(isset($_GET['failedemail'])) {
               ?>
               <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                Username / Email Already Registered
+                Please fill the email
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>
             <?php } ?>
     				<form method="post" action="signup.php" style="width: 85%;" enctype="multipart/form-data">
               <div class="form-floating">
-                <input type="text" class="form-control" id="floatingUsername" placeholder="Username" name="username">
+                <input type="text" class="form-control" id="floatingUsername" placeholder="Username" name="username" required>
                 <label for="floatingUsername">Username</label>
+                <div class="invalid-feedback">
+                  Please choose a username.
+                </div>
               </div>
               <br>
               <div class="form-floating">
-                <input type="email" class="form-control" id="floatingEmail" placeholder="Email" name="email">
+                <input type="email" class="form-control" id="floatingEmail" placeholder="Email" name="email" required>
                 <label for="floatingEmail">Email</label>
+                <div class="invalid-feedback">
+                  Please input your email.
+                </div>
               </div>
               <br>
               <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password" required>
                 <label for="floatingPassword">Password</label>
+                <div class="invalid-feedback">
+                  Please choose a password.
+                </div>
               </div>
               <br>
               <div class="row g-3">
                 <div class="col">
                   <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingFirst" placeholder="First Name" name="namadpn">
+                    <input type="text" class="form-control" id="floatingFirst" placeholder="First Name" name="namadpn" required>
                     <label for="floatingFirst">First Name</label>
+                    <div class="invalid-feedback">
+                      Please fill your first name.
+                    </div>
                   </div>
                 </div>
                 <div class="col">
                   <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingLast" placeholder="Last Name" name="namablkg">
+                    <input type="text" class="form-control" id="floatingLast" placeholder="Last Name" name="namablkg" required>
                     <label for="floatingLast">Last Name</label>
+                    <div class="invalid-feedback">
+                      Please fill your last name.
+                    </div>
                   </div>
                 </div>
               </div>
               <br>
-                
-                <div class="row" style="text-align:left">
-                    <div class="col">
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="gender" id="pria" value="pria">
-                          <label class="form-check-label" for="pria">
-                            Male
-                          </label>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="gender" id="wanita" value="wanita">
-                          <label class="form-check-label" for="wanita">
-                            Female
-                          </label>
-                        </div>
-                    </div>
+              <div class="form-floating">
+                <select class="form-select" id="floatingSelectGender" name="gender" required>
+                  <option selected disabled>Select your gender</option>
+                  <option value="pria">Pria</option>
+                  <option value="wanita">Wanita</option>
+                </select>
+                <label for="floatingSelectGender">Gender</label>
+                <div class="invalid-feedback">
+                  Please choose one
                 </div>
+              </div>
+              
                 <br>
                 <div class="form-floating">
-                  <textarea class="form-control" placeholder="Describe yourself" id="floatingTextarea" name="deskripsi" style="resize:none;height:150px"></textarea>
+                  <textarea class="form-control" placeholder="Describe yourself" id="floatingTextarea" name="deskripsi" style="resize:none;height:150px" required></textarea>
                   <label for="floatingTextarea">Description</label>
+                  <div class="invalid-feedback">
+                    Please describe yourself.
+                  </div>
                 </div>
                 <br>
                 <div class="mb-3">

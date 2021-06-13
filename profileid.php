@@ -3,7 +3,6 @@ if (!isset($_COOKIE['email'])){
   header('Location: cek.php');
 } else {
   include('data.php');
-  include('dataprofile.php');
 ?>
 
 
@@ -17,9 +16,82 @@ if (!isset($_COOKIE['email'])){
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-
+    <script src="https://unpkg.com/scroll-out/dist/scroll-out.min.js"></script>
     <title>Soul Match - Find Your Mate Here</title>
-    
+    <style>
+          #fromtop {
+          position: relative;
+          animation: fromtop 1s;
+          }
+          @keyframes fromtop {
+          from {
+            top: -200%;
+          }
+          to {
+            top:0%;
+          }
+        }
+
+        .kolom-desk {
+          text-align: center;
+          width:50%;
+        }
+
+        #fromleft {
+            position: relative;
+            display:block;
+            animation: fromleft 1.5s;
+        }
+        @keyframes fromleft {
+            from {
+                left:-100%;
+            }
+            to {
+                left:0;
+            }
+        }
+        
+        #fromright {
+            position: relative;
+            animation: fromright 1.5s;
+        }
+        @keyframes fromright {
+            from {
+                right:-100%;
+            }
+            to {
+                right:0;
+            }
+        }
+
+        #frombottom {
+            position: relative;
+            display:block;
+            animation: frombottom 1.5s;
+        }
+        @keyframes frombottom {
+            from {
+                bottom:-100%;
+            }
+            to {
+                bottom:0;
+            }
+        }
+        
+        #expand {
+            position: relative;
+            width:100%;
+            animation: expand 1.5s;
+        }
+        @keyframes expand {
+            from {
+              width:0;
+            }
+            to {
+              width:100%;
+            }
+        }
+      </style>
   </head>
   <body style="background-color: #f8a5c2;overflow-x: hidden;">
     <!-- navbar -->
@@ -95,10 +167,15 @@ if (!isset($_COOKIE['email'])){
     </nav>
     <!-- end of navbar -->
     <!-- start of profile -->
-    <div class="container-fluid" style="color: white; width: 80%; position:sticky; padding-top: 2%; left: 1%;right: 1%;">
+    <div class="container-fluid" style="color: white; width: 60%; position:sticky; padding-top: 2%; left: 1%;right: 1%;">
     <div class="row">
       <div class="col">
-        <a href="match.php" class="btn btn-danger">Back</a>
+        <a onclick="goBack()" class="btn btn-danger">Back</a>
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+        </script>
       </div>
     </div>
     <br>
@@ -108,27 +185,28 @@ if (!isset($_COOKIE['email'])){
       echo "<h3>Kembali ke pencarian</h3>";
       echo "<a href='match.php' class='btn btn-danger'>Find Match</a>";
     } else {
-    
+      include('dataprofile.php');
     ?>
     
       <div class="row justify-item-center">
         <div class="col-lg-3 col-md-12 col-sm-12">
           <center>
+          <div id='fromleft'>
             <img src="<?php echo $imgp; ?>" style="width: 70%; border-radius: 100%;border:2px solid white">
+          </div>
           </center>
           
         </div>
         <div class="col-lg-9 col-md-12 col-sm-12">
           <div class="row">
-            <div class="col">
+            <div class="col" id='fromright'>
               <?php
                 echo "<h1 style='text-decoration:none'>{$namadepanp} {$namablkgp}</h1>";
               ?>
             </div>
           </div>
-          <div class="dropdown-divider" style="border-top: 2px solid white;"></div>
           <div class="row">
-            <div class="col">
+            <div class="col" id='fromright'>
               <?php
                 echo "<p>{$deskripsip}</p>";
               ?>
@@ -138,13 +216,30 @@ if (!isset($_COOKIE['email'])){
         </div>
       </div>
       <center>
-        <div class="dropdown-divider" style="border-top: 2px solid white;"></div>
+        <div class="dropdown-divider" style="border-top: 2px solid white;" id='expand'></div>
+      </center>
+      
+      <center>
+      <div class='card kolom-desk' style='color:black' id='fromleft'><h2> <?php echo "{$namadepanp} {$namablkgp}" ?> </h2></div><br>
+      <div class='card kolom-desk' style='color:black' id='fromright'><h2> <?php echo "{$username}" ?> </h2></div><br>
+      <div class='card kolom-desk' style='color:black' id='fromleft'><h2> <?php echo "{$emailp}" ?> </h2></div><br>
+      <div class='card kolom-desk' style='color:black' id='fromright'><h2> <?php echo "{$genderp}" ?> </h2></div><br>
+      <div class='card kolom-desk' style='color:black' id='fromleft'><h2> <?php echo "{$deskripsip}" ?> </h2></div><br>
+      <div class='card kolom-desk' style='color:black' id='fromright'><h2> <?php echo "{$imgp}" ?> </h2></div><br>
+      <div class='card kolom-desk' style='color:black' id='fromleft'><h2> <?php echo "{$namadepanp} {$namablkgp}" ?> </h2></div><br>
+      <div class='card kolom-desk' style='color:black' id='fromright'><h2> <?php echo "{$namadepanp} {$namablkgp}" ?> </h2></div><br>
+      <div class='card kolom-desk' style='color:black' id='fromleft'><h2> <?php echo "{$namadepanp} {$namablkgp}" ?> </h2></div>
       </center>
     </div> 
     <!-- end of profile -->
     
 
   </body>
+  <script>
+    ScrollOut({
+      scrollingElement: ".scrollable-pane"
+    });
+  </script>
 </html>
 
 <?php

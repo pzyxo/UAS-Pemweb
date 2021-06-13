@@ -96,11 +96,10 @@ include('data.php');
     <style>
 
     .card {
-      transition: ease 0.5s;
+      transition: ease 0.1s;
     }
     .card:hover {
-      transform: scale(1.2);
-      border-radius: 5px;
+      transform: scale(1.1);
       z-index: 5;
     }
 
@@ -123,11 +122,33 @@ include('data.php');
       z-index: 5;
     }
 
+    #card {
+      position: relative;
+      text-align: center;
+      display:block;
+      width:18rem;
+      animation: fadein 1s;
+      -moz-animation: fadein 1s; /* Firefox */
+      -webkit-animation: fadein 1s; /* Safari and Chrome */
+      -o-animation: fadein 1s; /* Opera */
+      }
+    @keyframes fadein {
+      from {
+        top: -200%;
+        display: none;
+      }
+      to {
+        top:0%;
+        opacity: 1;
+        display: block;
+      }
+    }
     
 
     </style>
-    <div class="container-fluid" style="position: sticky;padding-top: 3%;">
+    <div class="container-fluid" style="position: sticky;">
         <center>
+        <p style="padding-top:2%"><h1 style="color: white;"><strong>FIND YOUR MATCH</strong></h1>
         <div class="row" style="width: 90%;">
             
             
@@ -141,8 +162,8 @@ include('data.php');
               $deskripsi = (string)($row1['deskripsi']);
               $img = (string)($row1['img']);
             ?>
-                <div class="col" style="padding:1%;">
-                <div class="card" style="width: 18rem;border-radius: 25px;padding: 5%;box-shadow: 5px 5px 5px #f78fb3;">
+              <div class="col" style="padding:1%;">
+                <div class="card" style="width: 18rem;border-radius: 25px;padding: 5%;box-shadow: 5px 5px 5px #f78fb3;" id="card">
                     <center>
                     <img src=<?php echo $img; ?> class="card-img-top" alt="..." style="border-radius: 100%;width: 15rem;border:1px solid white">
                     </center>
@@ -153,7 +174,7 @@ include('data.php');
                             <a href="#"><img src="img/love.png" width="50rem" class="button1-pro"></a>
                           </div>
                           <div class="col-3">
-                            <a href="#"><img src="img/pm.png" width="50rem" class="button1-pro"></a>
+                            <a href="messages.php?id=<?php echo $username?>#latest"><img src="img/pm.png" width="50rem" class="button1-pro"></a>
                           </div>
                           <div class="col-6">
                           <?php
@@ -163,13 +184,13 @@ include('data.php');
                       </div>
                     </div>
                 </div>
-            </div>
+              </div>
             <br>
             <?php } ?>
             
         </div>
-        <p style="padding-top:2%"><h1 style="color: white;"><strong>FIND YOUR MATCH</strong></h1>
-            <a href="match.php" class="btn btn-dark button2-pro" style="background-color: #f78fb3; border: 1px solid white;border-radius:15px">Find more</a></p>
+        
+        <a href="match.php" class="btn btn-dark btn-lg button2-pro" style="background-color: #f78fb3; border: 1px solid white;border-radius:15px;margin-top:1%">Find more</a></p>
     </center>
     </div>
 

@@ -18,8 +18,48 @@ include('data.php');
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    
     <title>Soul Match - Find Your Mate Here</title>
   </head>
+  <script>
+    setInterval(function() { $("#messages").load("chatread.php?id=<?php echo $_GET['id'];?>#latest"); }, 500);
+  </script>
+  <script>
+    setInterval(function() { $("#listchat").load("chatlist.php"); }, 500);
+  </script>
+  
+  <style>
+    .nav-link {
+      transition: ease 0.2s;
+      color: black;
+    }
+
+    .nav-link:hover {
+      color: white;
+    }
+
+    .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+      background-color:#bb2d3b; 
+      border-radius: 15px;
+      transition: ease 0.5s;
+    }
+
+    #isichat {
+      box-shadow: 3px 3px 2px grey;
+      border-radius:10px;
+    }
+
+    .dropdown-item.active {
+      background-color:#f78fb3;
+    }
+
+    .dropdown-item.red:hover {
+      background-color:red;
+      color:white;
+    }
+    
+    </style>
   <body style="background-color: #f8a5c2;overflow-x: hidden;">
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #f78fb3">
@@ -45,16 +85,7 @@ include('data.php');
             </li>
             
           </ul>
-          <style>
-            .dropdown-item.active {
-              background-color:#f78fb3;
-            }
-
-            .dropdown-item.red:hover {
-              background-color:red;
-              color:white;
-            }
-          </style>
+          
           <?php
           if(!isset($_COOKIE['email'])){
             ?>
@@ -94,86 +125,61 @@ include('data.php');
     <!-- end of navbar -->
 
     <!-- tampilan messages -->
-    <div class="container-fluid">
-    <div class="d-flex align-items-start">
-      <style>
-        .nav-link {
-          transition: ease 0.2s;
-          color: black;
-        }
+    <div class="container-fluid pt-3" style='width:100%'>
+      <div class="row justify-content-center">
+      
 
-        .nav-link:hover {
-          transform: scale(1.1);
-          color: white;
-          background-color:#bb2d3b;
-          border-radius: 15px;
-        }
-
-        .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
-          background-color:#bb2d3b; 
-          border-radius: 15px;
-          transition: ease 0.5s;
-        }
-      </style>
-      <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="font-size: 2rem;">
-        <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" href="messages.php/?id=<?php echo $username;?>">
-          <div class="row align-items-center">
-            <div class="col-4">
-                <img src="img/couple1.jpg" width="50px" style="border-radius: 100%;">
-            </div>
-            <div class="col-8">
-                <h1>Lorem</h1>
-            </div>
-          </div>
-        </button>
-
-        <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">
-          <div class="row align-items-center">
-            <div class="col-4">
-                <img src="img/user1.jpg" width="50px" style="border-radius: 100%;">
-            </div>
-            <div class="col-8">
-                <h1>Ipsum</h1>
-            </div>
-          </div>
-        </button>
-
-        <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">
-          <div class="row align-items-center">
-            <div class="col-4">
-                <img src="img/user2.jpeg" width="50px" style="border-radius: 100%;">
-            </div>
-            <div class="col-8">
-                <h1>Dolor</h1>
-            </div>
-          </div>
-        </button>
-
-        <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">
-          <div class="row align-items-center">
-            <div class="col-4">
-                <img src="img/user3.jpeg" width="50px" style="border-radius: 100%;">
-            </div>
-            <div class="col-8">
-                <h1>Amet</h1>
-            </div>
-          </div>
-        </button>
-      </div>
-      <div class="tab-content" id="v-pills-tabContent">
-        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-          <form method="post" action="chatperson.php">
-            <input type='text' name='isichat'>
-            <button type='submit' name='send'>Kirim</button>
-          </form>
+<!-- badan pesan -->
+<?php if(isset($_GET['id'])){ ?>
+        <div class="col col-lg-6 col-md-8 col-sm-12 ">
+        
+        <div class='card' style='max-height:600px;width:100%;padding:2%;background-color:pink' id='isichat' >
+        <div class="card" style="width: 100%;padding: 0%;" id="tampil">
+          <?php include('dataprofile.php') ?>
+            
+            <div class="card-body">
+              <img src=<?php echo $imgp; ?> class='img-card-top' alt="..." style="border-radius: 100%;width: 10%;border:1px solid white">
+              <?php echo "<a class='btn btn-danger btn-lg' href='profileid.php?id={$usernamep}'> {$namadepanp} {$namablkgp} </a>"; ?>
+              </div>
         </div>
-        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">Ipsum</div>
-        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">Dolor</div>
-        <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">Amet</div>
+          <div class='card card-messages' style='height:500px;overflow:auto;padding:2%;word-wrap: break-word;transform: rotate(180deg)' id='messages'>
+            
+            <!-- tempat chat -->
+            
+          </div>
+          <form method="post" class='row justify-content-center pt-2'>
+            <div class='col-auto' style='width:80%'>
+              <textarea type='text' name='isichat' class='form-control' rows='3' style='resize:none'></textarea>
+            </div>
+            <div class='col-auto'>
+              <button type='submit' name='send' class='btn btn-danger' >Send</button>
+            </div>
+          </form>
+          <?php
+          // mengupdate database dengan chat baru
+          if(isset($_POST['send'])){
+            include('dbconfig.php');
+            $receiver = (string)($_GET['id']);
+            $isichat = (string)($_POST['isichat']);
+            $queryupdate = "INSERT INTO `chat` (chat_id, to_user, from_user, time, isi_chat) VALUES (NULL, '{$receiver}', '{$_COOKIE['username']}', current_timestamp(), '{$isichat}');";
+            $send = mysqli_query($connect,$queryupdate);
+          }
+          ?>
+        </div>
+        <?php } else { ?>
+
+        <div clas='card' id='listchat' style='height:500px;width:80%;padding:2%;background-color:pink'>
+          <!-- tempat list -->
+        </div>
+        <?php } ?>
+        </div>
       </div>
     </div>
-    </div>
-    
+
+    <script>
+      var $chat = $(".card-messages");
+      $chat.scrollTop($chat.height());
+    </script>
    
     <!-- end of tampilan messages -->
     

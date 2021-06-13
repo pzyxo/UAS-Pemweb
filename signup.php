@@ -4,6 +4,9 @@ include('dbconfig.php');
 
 if(isset($_POST['submit'])){
 
+    if(!isset($_POST['email'])){
+        header("Location: register.php?failedemail=true");
+    }
     $email = $_POST['email'];
     $pass = $_POST['password'];
     $username = $_POST['username'];
@@ -22,12 +25,6 @@ if(isset($_POST['submit'])){
     $rowcheck = mysqli_fetch_array($queryc);
     $rowcheck2 = mysqli_fetch_array($queryc2);
 
-
-    while ($rowcheck = mysqli_fetch_array($queryc)){
-        if ($username == $rowcheck['username'] | $email == $rowcheck['email']){
-            header("Location: register.php?failedid=true");
-        }
-    }
     
     
     $query1 = "INSERT INTO login (email, password) VALUES ('{$email}','{$pass}')";
