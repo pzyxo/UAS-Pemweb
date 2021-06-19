@@ -33,7 +33,12 @@ if(isset($_POST['submit'])){
     // $result2 = mysqli_query($connect,$query2);
 
     if(mysqli_query($connect,$query1) && mysqli_query($connect,$query2)){
-        header("Location: login.php?success=true");
+        setcookie("username", $username, time()+3*30*24*3600,"/");
+        setcookie("gender", $gender, time()+3*30*24*3600,"/");
+        setcookie("email", $email, time()+3*30*24*3600,"/");
+        setcookie("password", $pass, time()+3*30*24*3600,"/");
+        header('Location: profile.php?change=true');
+        
     } else {
         header("Location: register.php?failed=true");
     }

@@ -21,5 +21,17 @@ $namablkg = (string)($row2['nama_belakang']);
 $deskripsi = (string)($row2['deskripsi']);
 $img = (string)($row2['img']);
 $email = (string)($row1['email']);
+$hobi = (string)($row2['hobi']);
+$alamat = (string)($row2['alamat']);
+$tempat = (string)($row2['tempat_lahir']);
+$tanggal = (string)($row2['tanggal_lahir']);
+$min = (string)($row2['min-age']);
+$max = (string)($row2['max-age']);
+$pekerjaan = (string)($row2['pekerjaan']);
+$religion = (string)($row2['agama']);
+$ig = (string)($row2['instagram']);
+$tw = (string)($row2['twitter']);
+$nation = (string)($row2['kebangsaan']);
+
 mysqli_close($connect);
 ?>

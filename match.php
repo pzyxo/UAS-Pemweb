@@ -19,6 +19,80 @@ include('data.php');
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 
     <title>Soul Match - Find Your Mate Here</title>
+    <style>
+          #fromtop {
+          position: relative;
+          animation: fromtop 1s;
+          }
+          @keyframes fromtop {
+          from {
+            top: -200%;
+          }
+          to {
+            top:0%;
+          }
+        }
+
+        .kolom-desk {
+          text-align: center;
+          width:50%;
+        }
+
+        #fromleft {
+            position: relative;
+            display:block;
+            animation: fromleft 1.5s;
+        }
+        @keyframes fromleft {
+            from {
+                left:-100%;
+            }
+            to {
+                left:0;
+            }
+        }
+        
+        #fromright {
+            position: relative;
+            animation: fromright 1.5s;
+        }
+        @keyframes fromright {
+            from {
+                right:-100%;
+            }
+            to {
+                right:0;
+            }
+        }
+
+        #frombottom {
+            position: relative;
+            display:block;
+            animation: frombottom 1.5s;
+        }
+        @keyframes frombottom {
+            from {
+                bottom:-100%;
+            }
+            to {
+                bottom:0;
+            }
+        }
+        
+        #expand {
+            position: relative;
+            width:100%;
+            animation: expand 1.5s;
+        }
+        @keyframes expand {
+            from {
+              width:0;
+            }
+            to {
+              width:100%;
+            }
+        }
+      </style>
   </head>
   <body style="background-color: #f8a5c2;">
     <!-- navbar -->
@@ -127,18 +201,15 @@ include('data.php');
       text-align: center;
       display:block;
       width:18rem;
-      animation: fadein 1s;
-      -moz-animation: fadein 1s; /* Firefox */
-      -webkit-animation: fadein 1s; /* Safari and Chrome */
-      -o-animation: fadein 1s; /* Opera */
+      animation: fromtop 1s;
       }
-    @keyframes fadein {
+    @keyframes fromtop {
       from {
-        top: -200%;
+        left: -200%;
         display: none;
       }
       to {
-        top:0%;
+        left:0%;
         opacity: 1;
         display: block;
       }
@@ -148,9 +219,8 @@ include('data.php');
     </style>
     <div class="container-fluid" style="position: sticky;">
         <center>
-        <p style="padding-top:2%"><h1 style="color: white;"><strong>FIND YOUR MATCH</strong></h1>
-        <div class="row" style="width: 90%;">
-            
+        <p style="padding-top:2%"><h1 id='fromright' style="color: white;"><strong>FIND YOUR MATCH</strong></h1>
+        <div class="row" style="width: 90%;">            
             
             <?php include('randmatch.php');
             
@@ -162,8 +232,8 @@ include('data.php');
               $deskripsi = (string)($row1['deskripsi']);
               $img = (string)($row1['img']);
             ?>
-              <div class="col" style="padding:1%;">
-                <div class="card" style="width: 18rem;border-radius: 25px;padding: 5%;box-shadow: 5px 5px 5px #f78fb3;" id="card">
+              <div class="col col-lg-4 col-md-4 col-sm-12" style="padding:1%;">
+                <div class="card" style="width: 80%;border-radius: 25px;padding: 5%;box-shadow: 5px 5px 5px #f78fb3;" id="card">
                     <center>
                     <img src=<?php echo $img; ?> class="card-img-top" alt="..." style="border-radius: 100%;width: 15rem;border:1px solid white">
                     </center>
@@ -171,10 +241,10 @@ include('data.php');
                       <h3 class="card-title"><?php echo "{$namadepan}"; ?></h3>
                       <div class="row align-items-center">
                           <div class="col-3">
-                            <a href="#"><img src="img/love.png" width="50rem" class="button1-pro"></a>
+                            <a href="sendlove.php?id=<?php echo $username?>"><img src="img/love.png" width="50rem" class="button1-pro"></a>
                           </div>
                           <div class="col-3">
-                            <a href="messages.php?id=<?php echo $username?>#latest"><img src="img/pm.png" width="50rem" class="button1-pro"></a>
+                            <a href="messages.php?id=<?php echo $username?>"><img src="img/pm.png" width="50rem" class="button1-pro"></a>
                           </div>
                           <div class="col-6">
                           <?php
@@ -190,7 +260,7 @@ include('data.php');
             
         </div>
         
-        <a href="match.php" class="btn btn-dark btn-lg button2-pro" style="background-color: #f78fb3; border: 1px solid white;border-radius:15px;margin-top:1%">Find more</a></p>
+        <a href="match.php" id='fromright' class="btn btn-dark btn-lg button2-pro" style="background-color: #f78fb3; border: 1px solid white;border-radius:15px;margin-top:1%">Find more >> </a></p>
     </center>
     </div>
 

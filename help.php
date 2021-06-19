@@ -1,3 +1,12 @@
+<?php
+if (!isset($_COOKIE['email'])){
+  header('Location: cek.php');
+} else {
+include('data.php');
+
+
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -11,6 +20,11 @@
 
     <title>Soul Match - Find Your Mate Here</title>
     <style>
+          #card:hover{
+            background-color:pink;
+            color:white;
+            border: 1px solid white !important;
+          }
           #fromtop {
           position: relative;
           animation: fromtop 1s;
@@ -97,7 +111,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+              <a class="nav-link" href="index.php">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="match.php">Match</a>
@@ -122,14 +136,11 @@
           </style>
           <?php
           if(!isset($_COOKIE['email'])){
-            
             ?>
-            
             <a href="login.php" class="btn btn-danger d-flex">Sign In</a>
             
             <?php
           } else {
-            include('data.php');
             ?>
             <div class="btn-group">
               <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" style="border-radius:30px;text-decoration:none">
@@ -160,95 +171,63 @@
       </div>
     </nav>
     <!-- end of navbar -->
-    <!-- content -->
-    <div class="container-fluid" style="color: white;">
-      <style>
-        b {
-          color:#ff4757;
-        }
-        .button1-pro {
-          transition: ease 0.1s;
-        }
-        .button1-pro:hover {
-          transform: scale(1.1);
-          border-radius: 5px;
-          z-index: 5;
-        }
-      </style>
-      <div class="container" style="text-align: center; font-size: 3em;">
-        <p class="card-text" id='fromright'>Find Your <b>Soul</b> and <b>Match</b> it!</p>
-      </div>
-      <center>
-        <div class="dropdown-divider" id='fromleft' style="border-top: 2px solid white; width: 90%;"></div>
-      </center>
-      <div class="row">
-        <div class="col-lg-8 col-md-12 col-sm-12">
-          <div class="card" id='fromleft' style="background-color: transparent;text-align: center;font-size: 3em;border: none;">
-            <img src="img/background.png" class="card-img-top" width="100%" >
-            </div>
+    <!-- tampilan settings -->
+    <div class="container mt-4 p-4">
+    <h1 id='fromright' style='color:white'><center>Help</center></h1>
+    <div class='card' id='fromleft' style='padding:5%'>
+        <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">What is this?</h5><hr>
+          <p class="card-text">This is a website for you to find a partner to date with</p>
         </div>
-        <div class="col-lg-4 col-sm-12 col-md-12" style="padding-top: 5%;padding-right: 5%;">
-          
-          <center>
-          <div class="row row-cols-lg-2 row-cols-md-2 row-cols-sm-1" id='fromright' style="margin: 5%;">
-            <div class="col">
-              <img src="img/user1.jpg" style="border-radius:100%;border: 2px solid black;" width="150px">
-              <p>Lorem</p>
-            </div>
-            <div class="col">
-              <img src="img/user2.jpeg" style="border-radius: 100%;border: 2px solid black;" width="150px">
-              <p>Ipsum</p>
-            </div>
-            <div class="col">
-              <img src="img/user3.jpeg" style="border-radius: 100%;border: 2px solid black;" width="150px">
-              <p>Dolor</p>
-            </div>
-            <div class="col">
-              <a href="match.php">
-              <img src="img/love.png" style="border-radius: 100%;" width="150px" class='button1-pro'>
-              </a>
-              <p>Find More</p>
-            </div>
-          </div>
-          </center>
         </div>
-      </div>
+        <hr>
+        <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Is this free?</h5><hr>
+          <p class="card-text">Yes, this is free. We don't receive any money from this website. But you can donate in any amount anytime :)</p>
+        </div>
+        </div>
+        <hr>
+        <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">How is this work?</h5><hr>
+          <p class="card-text">We random people and show it to you. You can re-random it until you find someone interesting for you.</p>
+        </div>
+        </div>
+        <hr>
+        <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Is my data safe?</h5><hr>
+          <p class="card-text">Of course, as long as you don't share your password or personal data to anyone</p>
+        </div>
+        </div>
+        <hr>
+        <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">I want to change my password</h5><hr>
+          <p class="card-text">You can go to <a href='settings.php' style='text-decoration:none'>settings</a> and click on change password button in account settings</p>
+        </div>
+        </div>
+        <hr>
+        <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">I think this website is interesting and I want to donate. Where can i donate?</h5><hr>
+          <p class="card-text">You can go to <a href='settings.php' style='text-decoration:none'>settings</a> and scroll down until you find donate button. You will be redirected to donation page</p>
+        </div>
+        </div>
+        <hr>
+        <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">I want to ask something else, is there any CS support?</h5><hr>
+          <p class="card-text">Of course. You can go to <a href='settings.php' style='text-decoration:none'>settings</a> page, and go to support. Send your problems to us, and we will reply as soon as possible :)</p>
+        </div>
+        </div>
     </div>
-    <center>
-      <div class="dropdown-divider" id='expand' style="border-top: 2px solid white; width: 90%;"></div>
-    </center>
-
-    <span>
-      <div class="container-fluid" style="color: white;">
-        <div class="card" style="padding-top: 5%;background-color: transparent;text-align: center;font-size: 2em;border: none;">
-        <h1 id='fromleft'>Members Who Found Their Love</h1>
-        <div class="row row-cols-lg-4 row-cols-md-2 row-cols-sm-1" id="galery" style="margin:5%">
-          <div class="col" id='fromleft'>
-              <img src="img/couple1.jpg" width="250px">
-              <p><br></p>
-          </div>
-          <div class="col" id='fromright'>
-              <img src="img/couple2.jpg" width="250px">
-              <p><br></p>
-          </div>
-          <div class="col" id='fromleft'>
-              <img src="img/couple3.jpg" width="250px">
-              <p><br></p>
-          </div>
-          <div class="col" id='fromright'>
-              <img src="img/couple4.jpg" width="250px">
-              <p><br></p>
-          </div>    
-        </div>  
-        
-      </div>
     </div>
-    </span>
-    <center>
-      <div class="dropdown-divider" id='expand' style="border-top: 2px solid white; width: 90%;"></div>
-    </center>
+    <!-- end of tampilan settings -->
     <!-- footer -->
-      <footer class="page-footer">
+    <footer class="page-footer">
         <center>
           <div class="container">
             <div class="row">
@@ -275,6 +254,9 @@
         </center>
       </footer>
       <!-- end of footer -->
-    
   </body>
 </html>
+
+<?php
+}
+?>

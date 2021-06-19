@@ -52,15 +52,6 @@ if(isset($_COOKIE['email'])){
             <li class="nav-item">
               <a class="nav-link" href="index.php">Home</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="match.php">Match</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="messages.php">Messages</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="activity.php">Activity</a>
-            </li>
             
           </ul>
         </div>
@@ -91,6 +82,12 @@ if(isset($_COOKIE['email'])){
                 Registration Success, Please Sign In
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>
+            <?php }elseif(isset($_GET['alert'])){
+              ?>
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                Please Sign In First!
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
             <?php } ?>
     				<form method="post" action="login-proc.php" style="width: 85%;">
               <div class="form-floating">
@@ -117,31 +114,32 @@ if(isset($_COOKIE['email'])){
     <!-- end of login form -->
     <!-- footer -->
     <footer class="page-footer">
-      <center>
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8 col-md-8 col-sm-12">
-              <br>
-              <h6 class="text-uppercase font-weight-bold">Additional Information</h6>
-              <p>Soul Match is an online dating web where people will choose whoever they want to date with. This web is made for you that have no much time to offline dating and too shy to ask for a date. User's privacy is protected, and there is no bot here. Also, users can save their time for meeting or dating right people..</p>
+        <center>
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-8 col-md-8 col-sm-12">
+                <br>
+                <h6 class="text-uppercase font-weight-bold">Additional Information</h6>
+                <p>Soul Match is an online dating web where people will choose whoever they want to date with. This web is made for you that have no much time to offline dating and too shy to ask for a date. User's privacy is protected, and there is no bot here. Also, users can save their time for meeting or dating right people..</p>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-12">
+                <br>
+                <h6 class="text-uppercase font-weight-bold">Find any problems? Contact us</h6>
+                <p><a href="https://instagram.com/pzyxooo" target="__blank">
+                  <img src="img/ig.png" width="50px"></a>
+                  <a href="https://www.facebook.com/fayusri.royfanto" target="__blank">
+                    <img src="img/fb.png" width="50px"></a>
+                  <a href="https://twitter.com/fatma_armi" target="__blank">
+                    <img src="img/twt.png" width="50px"></a>
+                  <a href=" https://wa.me/62895363665664" target="__blank">
+                    <img src="img/wa.png" width="50px"></a></p>
+              </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-12">
-              <br>
-              <h6 class="text-uppercase font-weight-bold">Find any problems? Contact us</h6>
-              <p><a href="https://instagram.com/fatma_armi" target="__blank">
-                <img src="img/ig.png" width="50px"></a>
-                <a href="https://www.facebook.com/fatma.armi.35" target="__blank">
-                  <img src="img/fb.png" width="50px"></a>
-                <a href="https://twitter.com/fatma_armi" target="__blank">
-                  <img src="img/twt.png" width="50px"></a>
-                <a href=" https://wa.me/6289522982606" target="__blank">
-                  <img src="img/wa.png" width="50px"></a></p>
           </div>
-        </div>
-      <div class="footer-copyright text-center bg-light" style="border-radius: 15px 15px 0 0">© 2021 Copyright: pz-team</div>
-      </center>
-    </footer>
-    <!-- end of footer -->
+        <div class="footer-copyright text-center bg-light">© 2021 Copyright: pz-team</div>
+        </center>
+      </footer>
+      <!-- end of footer -->
   </body>
 </html>
 

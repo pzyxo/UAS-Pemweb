@@ -25,9 +25,9 @@ include('data.php');
   <script>
     setInterval(function() { $("#messages").load("chatread.php?id=<?php echo $_GET['id'];?>#latest"); }, 500);
   </script>
-  <script>
+  <!-- <script>
     setInterval(function() { $("#listchat").load("chatlist.php"); }, 500);
-  </script>
+  </script> -->
   
   <style>
     .nav-link {
@@ -58,8 +58,114 @@ include('data.php');
       background-color:red;
       color:white;
     }
-    
+    #card-list {
+      transition: ease 0.1s;
+    }
+    #card-list:hover {
+      transform: scale(1.025);
+      z-index: 5;
+    }
+
+    @media screen and (max-width: 1080px) {
+      #isichat {
+        height: 800px !important; /* The width is 100%, when the viewport is 800px or smaller */
+      }
+
+      #messages {
+        height: 600px !important;
+      }
+
+      .listchat {
+        height: 680px !important;
+      }
+    }
+    @media screen and (max-width: 480px) {
+      #isichat {
+        height: 680px !important; /* The width is 100%, when the viewport is 800px or smaller */
+      }
+
+      #messages {
+        height: 480px !important;
+      }
+      .listchat {
+        height: 480px !important;
+      }
+    }
     </style>
+    <style>
+          #fromtop {
+          position: relative;
+          animation: fromtop 1s;
+          }
+          @keyframes fromtop {
+          from {
+            top: -200%;
+          }
+          to {
+            top:0%;
+          }
+        }
+
+        .kolom-desk {
+          text-align: center;
+          width:50%;
+        }
+
+        #fromleft {
+            position: relative;
+            display:block;
+            animation: fromleft 1.5s;
+        }
+        @keyframes fromleft {
+            from {
+                left:-100%;
+            }
+            to {
+                left:0;
+            }
+        }
+        
+        #fromright {
+            position: relative;
+            animation: fromright 1.5s;
+        }
+        @keyframes fromright {
+            from {
+                right:-100%;
+            }
+            to {
+                right:0;
+            }
+        }
+
+        #frombottom {
+            position: relative;
+            display:block;
+            animation: frombottom 1.5s;
+        }
+        @keyframes frombottom {
+            from {
+                bottom:-100%;
+            }
+            to {
+                bottom:0;
+            }
+        }
+        
+        #expand {
+            position: relative;
+            width:100%;
+            animation: expand 1.5s;
+        }
+        @keyframes expand {
+            from {
+              width:0;
+            }
+            to {
+              width:100%;
+            }
+        }
+      </style>
   <body style="background-color: #f8a5c2;overflow-x: hidden;">
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #f78fb3">
@@ -131,18 +237,26 @@ include('data.php');
 
 <!-- badan pesan -->
 <?php if(isset($_GET['id'])){ ?>
-        <div class="col col-lg-6 col-md-8 col-sm-12 ">
+        <div class="col col-lg-8 col-md-8 col-sm-12 ">
         
-        <div class='card' style='max-height:600px;width:100%;padding:2%;background-color:pink' id='isichat' >
+        <div class='card' style='height:680px;width:100%;padding:2%;background-color:pink' id='isichat' >
         <div class="card" style="width: 100%;padding: 0%;" id="tampil">
           <?php include('dataprofile.php') ?>
             
             <div class="card-body">
-              <img src=<?php echo $imgp; ?> class='img-card-top' alt="..." style="border-radius: 100%;width: 10%;border:1px solid white">
-              <?php echo "<a class='btn btn-danger btn-lg' href='profileid.php?id={$usernamep}'> {$namadepanp} {$namablkgp} </a>"; ?>
+            <div class="row">
+            <div class='col-2'>
+            <a href='match.php' class="btn btn-danger">Back</a>
+            </div>
+            <div class='col-10'>
+              <div align='right'>
+                <?php echo "<h3 > {$namadepanp} {$namablkgp} </h3>"; ?>
+                <a href='profileid.php?id=<?php echo $usernamep ?>'><img src=<?php echo $imgp; ?> class='img-card-top' alt="..." style="border-radius: 100%;width: 10%;border:1px solid white"></a>
               </div>
+            </div>
+            </div>
         </div>
-          <div class='card card-messages' style='height:500px;overflow:auto;padding:2%;word-wrap: break-word;transform: rotate(180deg)' id='messages'>
+          <div class='card card-messages' style='height:380px;overflow:auto;padding:2%;word-wrap: break-word;transform: rotate(180deg)' id='messages'>
             
             <!-- tempat chat -->
             
@@ -161,15 +275,30 @@ include('data.php');
             include('dbconfig.php');
             $receiver = (string)($_GET['id']);
             $isichat = (string)($_POST['isichat']);
-            $queryupdate = "INSERT INTO `chat` (chat_id, to_user, from_user, time, isi_chat) VALUES (NULL, '{$receiver}', '{$_COOKIE['username']}', current_timestamp(), '{$isichat}');";
+            $querychat = "select * from chat where from_user ='".$_COOKIE['username']."' and to_user = '{$receiver}' or from_user = '".$receiver."' and to_user = '{$_COOKIE['username']}' ORDER BY time DESC limit 30";
+            $resultchat = mysqli_query($connect,$querychat);
+            $count = mysqli_num_rows($resultchat);
+            $i = $count;
+            while($rowchat = mysqli_fetch_array($resultchat)){
+              if($count == $i ){
+                $queryread = "UPDATE `chat` SET status = '1' WHERE from_user ='".$_COOKIE['username']."' and to_user = '{$receiver}' or from_user = '".$receiver."' and to_user = '{$_COOKIE['username']}'";
+                $result = mysqli_query($connect, $queryread);
+              }
+              $i--;
+            }
+            $queryupdate = "INSERT INTO `chat` (chat_id, to_user, from_user, time, isi_chat, status) VALUES (NULL, '{$receiver}', '{$_COOKIE['username']}', current_timestamp(), '{$isichat}', '0');";
             $send = mysqli_query($connect,$queryupdate);
           }
           ?>
         </div>
         <?php } else { ?>
-
-        <div clas='card' id='listchat' style='height:500px;width:80%;padding:2%;background-color:pink'>
-          <!-- tempat list -->
+        
+        
+        <div class='card' style='height:600px;width:100%;padding:2% 5% 2% 5%;background-color:transparent;border:none'>
+        <h1 id='fromright' style='color:white'><center>Messages</center></h1>
+        <div id='listchat'>
+          <?php include 'chatlist.php'?>
+          </div>
         </div>
         <?php } ?>
         </div>
@@ -180,6 +309,7 @@ include('data.php');
       var $chat = $(".card-messages");
       $chat.scrollTop($chat.height());
     </script>
+    
    
     <!-- end of tampilan messages -->
     

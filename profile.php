@@ -20,6 +20,80 @@ include('data.php');
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 
     <title>Soul Match - Find Your Mate Here</title>
+    <style>
+          #fromtop {
+          position: relative;
+          animation: fromtop 1s;
+          }
+          @keyframes fromtop {
+          from {
+            top: -200%;
+          }
+          to {
+            top:0%;
+          }
+        }
+
+        .kolom-desk {
+          text-align: center;
+          width:50%;
+        }
+
+        #fromleft {
+            position: relative;
+            display:block;
+            animation: fromleft 1.5s;
+        }
+        @keyframes fromleft {
+            from {
+                left:-100%;
+            }
+            to {
+                left:0;
+            }
+        }
+        
+        #fromright {
+            position: relative;
+            animation: fromright 1.5s;
+        }
+        @keyframes fromright {
+            from {
+                right:-100%;
+            }
+            to {
+                right:0;
+            }
+        }
+
+        #frombottom {
+            position: relative;
+            display:block;
+            animation: frombottom 1.5s;
+        }
+        @keyframes frombottom {
+            from {
+                bottom:-100%;
+            }
+            to {
+                bottom:0;
+            }
+        }
+        
+        #expand {
+            position: relative;
+            width:100%;
+            animation: expand 1.5s;
+        }
+        @keyframes expand {
+            from {
+              width:0;
+            }
+            to {
+              width:100%;
+            }
+        }
+      </style>
     
   </head>
   <body style="background-color: #f8a5c2;overflow-x: hidden;">
@@ -110,11 +184,11 @@ include('data.php');
     </nav>
     <!-- end of navbar -->
     <!-- start of profile -->
-    <div class="container-fluid" style="color: white; width: 80%; position:sticky; padding-top: 5%; left: 1%;right: 1%;">
+    <div class="container mt-5" style="color: white; width: 80%; position:sticky;">
       <div class="row justify-item-center">
         <div class="col-lg-3 col-md-12 col-sm-12">
           <center>
-            <img src="<?php echo $img; ?>" style="width: 70%; border-radius: 100%;border:2px solid white" class="photoprofile button1-pro">
+            <a href='crop.php' data-bs-toggle="tooltip" data-bs-placement="bottom" title="Clik to change your profile photo"><img src="<?php echo $img; ?>" style="width: 70%; border-radius: 100%;border:2px solid white" class="photoprofile" id='fromleft'></a>
           </center>
           
         </div>
@@ -122,77 +196,225 @@ include('data.php');
           <div class="row">
             <div class="col">
               <?php
-                echo "<h1 style='text-decoration:none'>{$namadepan} {$namablkg}</h1>";
+                echo "<h1 id='fromright' style='text-decoration:none'>{$namadepan} {$namablkg}</h1>";
               ?>
             </div>
           </div>
-          <div class="dropdown-divider" style="border-top: 2px solid white;"></div>
+          <div id='expand' class="dropdown-divider" style="border-top: 2px solid white;"></div>
           <div class="row">
             <div class="col">
               <?php
-                echo "<p>{$deskripsi}</p>";
+                echo "<p id='fromright'>{$deskripsi}</p>";
               ?>
             </div>
           </div>
           
         </div>
       </div>
-      <center>
-        <div class="dropdown-divider" style="border-top: 2px solid white;"></div>
-      </center>
-      <div class="row">
+        <div id='expand' class="dropdown-divider" style="border-top: 2px solid white;"></div>
+      <div class="row" id='fromleft'>
         <?php if(!isset($_GET['change'])) {?>
         <div class="col">
           <a href="profile.php?change=true" class="btn btn-danger button1-pro">Update Profile</a>
         </div>
         <?php } else { ?>
-        <div class="col">
+        <p class="col">
           <a href="profile.php" class="btn btn-danger button1-pro" style="border-radius: 35px 10px 10px 35px">Back</a>
-        </div>
+        </p>
         <?php } ?>
         
       </div>
-      <br>
-      <div class="row">
-        <?php if(isset($_GET['change'])){ ?>
-      <form action="edit.php" method="post" name="update">
-        <table width="25%" border="0" class="table table-danger">
+      <?php if(isset($_GET['change'])){ ?>
+      <form action="updatedata.php" method="post" name="updatedata">
+      <center>
+        <table border="0" class="table table-danger" style='width:fit-content' id='fromright'>
           <tr>
-            <td>ID Karyawan</td>
-            <td><input type="text" name="id" value="<?php echo $username;?>" class="form-control form-control-sm"></td>
+            <td style='width:20%'>Name</td>
+            <td style='width:80%'>
+            <div class="row">
+              <div class="col-6">
+                <input type="text" class="form-control" name="namadpn" value="<?php echo $namadepan;?>">
+              </div>
+              <div class="col-6">
+                <input type="text" class="form-control" name="namablkg" value="<?php echo $namablkg;?>">
+              </div>
+            </div>
+            </td>
           </tr>
           <tr>
-            <td>Nama</td>
-            <td><input type="text" name="nama" value="<?php echo $namadepan;?>"></td>
+            <td>Description</td>
+            <td><textarea type='text' class='form-control' rows='2' style='resize:none;' name="deskripsi"><?php echo $deskripsi;?></textarea></td>
+          </tr>
+          <tr>
+            <td>Place and Date of Birth</td>
+            <td>
+            <div class="row" >
+              <div class="col">
+                <input type="text" class="form-control" name="tempatlhr" value="<?php echo $tempat;?>">
+              </div>
+              <div class="col">
+                <input type="date" class="form-control" name="tgllhr" value="<?php echo $tanggal;?>">
+              </div>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Address</td>
+            <td><textarea type='text' class='form-control' rows='2' style='resize:none;' name="alamat"><?php echo $alamat;?></textarea></td>
+          </tr>
+          <tr>
+            <td>Religion</td>
+            <td>
+            <select class="form-select" name="religion"  style='width:fit-content' required>
+                  <option value="Islam" <?php if($religion == 'Islam'){?> echo "selected"; <?php } ?>>Islam</option>
+                  <option value="Kristen" <?php if($religion == 'Kristen'){?> echo "selected"; <?php }?>>Kristen</option>
+                  <option value="Katolik" <?php if($religion == 'Katolik'){?> echo "selected"; <?php } ?>>Katolik</option>
+                  <option value="Hindu" <?php if($religion == 'Hindu'){?> echo "selected"; <?php }?>>Hindu</option>
+                  <option value="Budha" <?php if($religion == 'Budha'){?> echo "selected"; <?php } ?>>Budha</option>
+                  <option value="Konghucu" <?php if($religion == 'Konghucu'){?> echo "selected"; <?php }?>>Konghucu</option>
+            </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Gender</td>
+            <td>
+            <select class="form-select" id="floatingSelectGender" name="gender"  style='width:fit-content' required>
+                  <option value="Male" <?php if($gender == 'Male'){?> echo "selected"; <?php } ?>>Male</option>
+                  <option value="Female" <?php if($gender == 'Female'){?> echo "selected"; <?php }?>>Female</option>
+            </select>
+            </td>
+          </tr>
+          </tr>
+            <td>Interesting</td>
+            <td>
+            <div class="row">
+              <div class="col col-lg-2 col-md-3 col-sm-3">
+                <input type="number" class="form-control" name="min-age" value="<?php echo $min;?>" min="18" max="99">
+              </div>
+              <div class='col-1'>
+              <center><h3> - </h3></center>
+              </div>
+              <div class="col col-lg-2 col-md-3 col-sm-3">
+                <input type="number" class="form-control" name="max-age" value="<?php echo $max;?>" min="18" max="99">
+              </div>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Job</td>
+            <td><input type="text" class="form-control" name="pekerjaan" value="<?php echo $pekerjaan;?>" ></td>
+          </tr>
+          <tr>
+            <td>Hobby</td>
+            <td><input type="text" class="form-control" name="hobi" value="<?php echo $hobi;?>" ></td>
+          </tr>
+          <tr>
+            <td>Nation</td>
+            <td><input type="text" class="form-control" name="nation" value="<?php echo $nation;?>" ></td>
+          </tr>
+          <tr>
+            <td>Social Media</td>
+            <td>
+            Instagram
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon1">@</span>
+              <input type="text" name="ig" class="form-control" value="<?php echo $ig ?>" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            Twitter
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon1">@</span>
+              <input type="text" name="tw" class="form-control" value="<?php echo $tw ?>" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><input type="submit" name="submit" value="Update" class="btn btn-danger"></td>
+          </tr>
+        </table>
+        </center>
+      </form>
+      <?php } else { ?>
+        <form name="update">
+      <center>
+        <table border="0" class="table table-danger mt-3" style='width:fit-content' id='fromright'>
+          <tr>
+            <td style='width:40%'>Full Name</td>
+            <td style='width:70%'>
+                <input type="text" class="form-control" name="namadpn" value="<?php echo "{$namadepan} {$namablkg}";?>"disabled style='background-color:white;max-width:100%'>
+            </td>
           </tr>
           <tr>
             <td>Email</td>
-            <td><input type="email" name="email" value="<?php echo $email;?>"></td>
-          </tr>	
-            <td>Telepon</td>
-            <td><input type="text" name="telepon" value="<?php echo $namablkg;?>"></td>
-          <tr>
-            <td>Alamat</td>
-            <td><input type="text" name="alamat" value="<?php echo $deskripsi;?>"></td>
+            <td><input type="email" name="email" class="form-control" value="<?php echo $email;?>" disabled style='background-color:white;max-width:100%'></td>
           </tr>
           <tr>
-            <td>Jenis Kelamin</td>
-            <td><input type="radio" id="pria" name="gender" <?php if($gender == 'pria'){?> checked="true" <?php } ?> >Pria
-            <input type="radio" id="pria" name="gender" <?php if($gender == 'wanita'){?> checked="true" <?php }?> >Wanita</td>
-          </tr>
-          <!-- </tr>
-            <td>Tempat Lahir</td>
-            <td><input type="text" name="tempat_lahir" value="<?php echo $tempat_lahir;?>"></td>
+            <td>Place and Date of Birth</td>
+            <td>
+            <div class="row" >
+              <div class="col">
+                <input type="text" class="form-control" name="tempatlhr" value="<?php echo "{$tempat}, {$tanggal}";?>" disabled style='background-color:white;max-width:fit-content'>
+              </div>
+            </div>
+            </td>
           </tr>
           <tr>
-            <td>Tanggal Lahir</td>
-            <td><input type="date" name="tanggal_lahir" value="<?php echo $tanggal_lahir;?>"></td>
-          </tr> -->
+            <td>Address</td>
+            <td><textarea type='text' class='form-control' rows='2' name="alamat" disabled style='resize:none;background-color:white;text-align:left;max-width:100%'><?php echo $alamat;?></textarea></td>
+          </tr>
           <tr>
-            <td></td>
-            <td><input type="submit" name="update" value="update" class="btn btn-danger"></td>
+            <td>Religion</td>
+            <td>
+            <input class="form-control" value="<?php echo $religion;?>" disabled style='background-color:white;text-align:center;max-width:fit-content'>
+            </td>
+          </tr>
+          <tr>
+            <td>Gender</td>
+            <td>
+              <input class="form-control" value="<?php echo $gender;?>" disabled style='background-color:white;text-align:center;max-width:fit-content'>
+            </td>
+          </tr>
+          </tr>
+            <td>Interesting With</td>
+            <td>
+            <div class="row">
+              <div class="col col-lg-2 col-md-3 col-sm-3">
+                <input class="form-control" name="min-age" value="<?php echo $min;?>" disabled style='background-color:white;text-align:center'>
+              </div>
+              <div class='col-1'>
+              <center><h3> - </h3></center>
+              </div>
+              <div class="col col-lg-2 col-md-3 col-sm-3">
+                <input class="form-control" name="max-age" value="<?php echo $max;?>"disabled style='background-color:white;text-align:center'>
+              </div>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Job</td>
+            <td><input type="text" class="form-control" name="pekerjaan" value="<?php echo $pekerjaan;?>" disabled style='background-color:white;max-width:100%'></td>
+          </tr>
+          <tr>
+            <td>Hobby</td>
+            <td><input type="text" class="form-control" name="hobi" value="<?php echo $hobi;?>" disabled style='background-color:white;max-width:100%'></td>
+          </tr>
+          <tr>
+            <td>Nation</td>
+            <td><input type="text" class="form-control" name="nation" value="<?php echo $nation;?>" disabled style='background-color:white;max-width:100%' ></td>
+          </tr>
+          <tr>
+            <td>Social Media</td>
+            <td>
+            <?php if($ig != "-"){ ?> 
+            <p><a href="http://instagram.com/<?php echo $ig ?>/"><img src='img/ig.png' style='width:40px' class='button1-pro'></a>
+            <?php echo $ig; } ?></p>
+            <?php if($tw != "-"){ ?> 
+            <p><a href="http://twiiter.com/<?php echo $tw ?>/"><img src='img/twt.png' style='width:40px' class='button1-pro'></a>
+            <?php echo $tw; }?></p>
+            </td>
           </tr>
         </table>
+        </center>
       </form>
       <?php } ?>
     </div> 

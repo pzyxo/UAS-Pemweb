@@ -150,7 +150,7 @@ if (!isset($_COOKIE['email'])){
                 ?>
                 </h5>
                 </li>
-                <li><a class="dropdown-item active" type="button" href="profile.php">Profile</a></li>
+                <li><a class="dropdown-item" type="button" href="profile.php">Profile</a></li>
                 <li><a class="dropdown-item" type="button" href="settings.php">Setting</a></li>
                 <center>
                 <div class="dropdown-divider" style="border-top: 2px solid black; width: 90%;"></div>
@@ -167,7 +167,7 @@ if (!isset($_COOKIE['email'])){
     </nav>
     <!-- end of navbar -->
     <!-- start of profile -->
-    <div class="container-fluid" style="color: white; width: 60%; position:sticky; padding-top: 2%; left: 1%;right: 1%;">
+    <div class="container-fluid" style="color: white; width: 90%; position:sticky; padding-top: 2%; left: 1%;right: 1%;">
     <div class="row">
       <div class="col">
         <a onclick="goBack()" class="btn btn-danger">Back</a>
@@ -219,17 +219,83 @@ if (!isset($_COOKIE['email'])){
         <div class="dropdown-divider" style="border-top: 2px solid white;" id='expand'></div>
       </center>
       
+      <form name="update">
       <center>
-      <div class='card kolom-desk' style='color:black' id='fromleft'><h2> <?php echo "{$namadepanp} {$namablkgp}" ?> </h2></div><br>
-      <div class='card kolom-desk' style='color:black' id='fromright'><h2> <?php echo "{$username}" ?> </h2></div><br>
-      <div class='card kolom-desk' style='color:black' id='fromleft'><h2> <?php echo "{$emailp}" ?> </h2></div><br>
-      <div class='card kolom-desk' style='color:black' id='fromright'><h2> <?php echo "{$genderp}" ?> </h2></div><br>
-      <div class='card kolom-desk' style='color:black' id='fromleft'><h2> <?php echo "{$deskripsip}" ?> </h2></div><br>
-      <div class='card kolom-desk' style='color:black' id='fromright'><h2> <?php echo "{$imgp}" ?> </h2></div><br>
-      <div class='card kolom-desk' style='color:black' id='fromleft'><h2> <?php echo "{$namadepanp} {$namablkgp}" ?> </h2></div><br>
-      <div class='card kolom-desk' style='color:black' id='fromright'><h2> <?php echo "{$namadepanp} {$namablkgp}" ?> </h2></div><br>
-      <div class='card kolom-desk' style='color:black' id='fromleft'><h2> <?php echo "{$namadepanp} {$namablkgp}" ?> </h2></div>
-      </center>
+        <table border="0" class="table table-danger mt-3" style='width:fit-content' id='fromright'>
+          <tr>
+            <td style='width:40%'>Full Name</td>
+            <td style='width:70%'>
+                <input type="text" class="form-control" name="namadpn" value="<?php echo "{$namadepanp} {$namablkgp}";?>"disabled style='background-color:white;max-width:100%'>
+            </td>
+          </tr>
+          <tr>
+            <td>Place and Date of Birth</td>
+            <td>
+            <div class="row" >
+              <div class="col">
+                <input type="text" class="form-control" name="tempatlhr" value="<?php echo "{$tempatp}, {$tanggalp}";?>" disabled style='background-color:white;max-width:fit-content'>
+              </div>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Address</td>
+            <td><textarea type='text' class='form-control' rows='2' name="alamat" disabled style='resize:none;background-color:white;text-align:left;max-width:100%'><?php echo $alamatp;?></textarea></td>
+          </tr>
+          <tr>
+            <td>Religion</td>
+            <td>
+            <input class="form-control" value="<?php echo $religionp;?>" disabled style='background-color:white;text-align:center;max-width:fit-content'>
+            </td>
+          </tr>
+          <tr>
+            <td>Gender</td>
+            <td>
+              <input class="form-control" value="<?php echo $genderp;?>" disabled style='background-color:white;text-align:center;max-width:fit-content'>
+            </td>
+          </tr>
+          </tr>
+            <td>Interesting With</td>
+            <td>
+            <div class="row">
+              <div class="col col-lg-2 col-md-3 col-sm-3">
+                <input class="form-control" name="min-age" value="<?php echo $minp;?>" disabled style='background-color:white;text-align:center'>
+              </div>
+              <div class='col-1'>
+              <center><h3> - </h3></center>
+              </div>
+              <div class="col col-lg-2 col-md-3 col-sm-3">
+                <input class="form-control" name="max-age" value="<?php echo $maxp;?>"disabled style='background-color:white;text-align:center'>
+              </div>
+            </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Job</td>
+            <td><input type="text" class="form-control" name="pekerjaan" value="<?php echo $pekerjaanp;?>" disabled style='background-color:white;max-width:100%'></td>
+          </tr>
+          <tr>
+            <td>Hobby</td>
+            <td><input type="text" class="form-control" name="hobi" value="<?php echo $hobip;?>" disabled style='background-color:white;max-width:100%'></td>
+          </tr>
+          <tr>
+            <td>Nation</td>
+            <td><input type="text" class="form-control" name="nation" value="<?php echo $nationp;?>" disabled style='background-color:white;max-width:100%' ></td>
+          </tr>
+          <tr>
+            <td>Social Media</td>
+            <td>
+            <?php if($igp != "-"){ ?> 
+            <p><a href="http://instagram.com/<?php echo $igp ?>/"><img src='img/ig.png' style='width:40px' class='button1-pro'></a>
+            <?php echo $igp; } ?></p>
+            <?php if($twp != "-"){ ?> 
+            <p><a href="http://twiiter.com/<?php echo $twp ?>/"><img src='img/twt.png' style='width:40px' class='button1-pro'></a>
+            <?php echo $twp; }?></p>
+            </td>
+          </tr>
+        </table>
+        </center>
+      </form>
     </div> 
     <!-- end of profile -->
     

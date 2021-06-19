@@ -36,6 +36,7 @@
     <?php
 
     if (!isset($_COOKIE['email'])){
+      header("Location: login.php?alert=true");
         ?>
         
     <div class="container container-fluid" style="padding-top:10%">

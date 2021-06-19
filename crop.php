@@ -17,6 +17,11 @@ include('data.php');
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.js"></script>
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Soul Match - Find Your Mate Here</title>
     <style>
@@ -120,7 +125,7 @@ include('data.php');
               <a class="nav-link" href="messages.php">Messages</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="activity.php">Activity</a>
+              <a class="nav-link" href="activity.php">Activity</a>
             </li>
             
           </ul>
@@ -155,8 +160,8 @@ include('data.php');
                 ?>
                 </h5>
                 </li>
-                <li><a class="dropdown-item" type="button" href="profile.php">Profile</a></li>
-                <li><a class="dropdown-item" type="button" href="settings.php">Setting</a></li>
+                <li><a class="dropdown-item active" type="button" href="profile.php">Profile</a></li>
+                <li><a class="dropdown-item " type="button" href="settings.php">Setting</a></li>
                 <center>
                 <div class="dropdown-divider" style="border-top: 2px solid black; width: 90%;"></div>
                 </center>
@@ -172,26 +177,87 @@ include('data.php');
     </nav>
     <!-- end of navbar -->
     <!-- tampilan activity -->
-    <div class="container-fluid mt-5">
-    
-    <h1 id='fromright' style='color:white'><center>Activity</center></h1>
-    <center>
-    <div class='card' id='fromleft' style="width: 80%;height:500px;overflow:auto;background-color: white;padding:2%;border-radius: 10px;">
-    <?php
-    include('dbconfig.php');
+    <div class="container mt-4 p-4">
+    <h1 id='fromright' style='color:white'><center>Update Profile Photo</center></h1>
+    <div class='card' id='fromleft' style='padding:2%'>
+    <div class="container">
+  <div class="card">
+    <div class="card-body">
 
-    // query untuk mendapat database acivity
-    $queryact = "select * from activity WHERE username = '{$_COOKIE['username']}' order by activity_id DESC";
-    $resultact = mysqli_query($connect,$queryact);
-    while($rowact = mysqli_fetch_array($resultact)){
-      echo "<center>";
-      echo "<div class='card' id='card' style='text-align:left;width:80%;border:1px solid black;padding:1%;'>";
-      echo "<span style='font-size:20px'>{$rowact['activity']}</span> <i style='font-size:10px'><div align='right'>{$rowact['waktu']}</div></i>";
-      echo "</div></center><br>";
-    }
-    ?>
+      <div class="row">
+        <div class="col col-md-4 col-sm-12 text-center">
+        <img src="<?php echo $img; ?>" style='width:200px'>
+        <h4 style='text-align:center'>Your profile photo now</h4>
+        </div>
+        <div class="col col-md-4 col-sm-12" style="padding:5%;">
+        <strong>Select image:</strong>
+        <input type="file" id="image" class='form-control'>
+
+        <button class="btn btn-danger btn-block btn-upload-image" style="margin-top:2%">Upload Photo</button>
+        </div>
+        <div class="col col-md-4 col-sm-12 text-center">
+        <div id="upload-demo"></div>
+        </div>
+        
+      </div>
+      <div class='row'>
+        <div class='col'>
+          <a href='profile.php' class='btn btn-danger'>Back</a>
+        </div>
+      </div>
+
     </div>
-    </center>
+</div>
+
+
+<script type="text/javascript">
+var resize = $('#upload-demo').croppie({
+    enableExif: true,
+    enableOrientation: true,    
+    viewport: { // Default { width: 100, height: 100, type: 'square' } 
+        width: 280,
+        height: 280,
+        type: 'square' //square
+    },
+    boundary: {
+        width: 300,
+        height: 300
+    }
+});
+
+
+$('#image').on('change', function () { 
+  var reader = new FileReader();
+    reader.onload = function (e) {
+      resize.croppie('bind',{
+        url: e.target.result
+      }).then(function(){
+        console.log('jQuery bind complete');
+      });
+    }
+    reader.readAsDataURL(this.files[0]);
+});
+
+
+$('.btn-upload-image').on('click', function (ev) {
+  resize.croppie('result', {
+    type: 'canvas',
+    size: 'viewport'
+  }).then(function (img) {
+    $.ajax({
+      url: "uploadpp.php",
+      type: "POST",
+      data: {"image":img},
+      success: function (data) {
+        window.location.href = "profile.php";
+      }
+    });
+  });
+});
+
+
+</script>
+    </div>
     </div>
     <!-- end of tampilan activity -->
     

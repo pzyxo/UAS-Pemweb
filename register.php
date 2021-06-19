@@ -55,15 +55,6 @@ if (isset($_COOKIE['email'])){
             <li class="nav-item">
               <a class="nav-link" href="index.php">Home</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="match.php">Match</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="messages.php">Messages</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="activity.php">Activity</a>
-            </li>
             
           </ul>
           
@@ -145,8 +136,8 @@ if (isset($_COOKIE['email'])){
               <div class="form-floating">
                 <select class="form-select" id="floatingSelectGender" name="gender" required>
                   <option selected disabled>Select your gender</option>
-                  <option value="pria">Pria</option>
-                  <option value="wanita">Wanita</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
                 </select>
                 <label for="floatingSelectGender">Gender</label>
                 <div class="invalid-feedback">
@@ -163,11 +154,6 @@ if (isset($_COOKIE['email'])){
                   </div>
                 </div>
                 <br>
-                <div class="mb-3">
-                  <label for="formFile" class="form-label">Upload Your Profile Photo</label>
-                  <input class="form-control" type="file" id="formFile" name="foto">
-                </div>
-                <br>
                 <p><button type="submit" name="submit" class="btn btn-light button1-pro" >Sign Up</button>
                 <p>Already have an account yet? 
                 <a href="login.php" class="btn btn-danger btn-sm button1-pro">Sign In</a></p>
@@ -180,7 +166,34 @@ if (isset($_COOKIE['email'])){
     	</div>
     </div>
     <!-- end of tampilan activity -->
-    
+    <!-- footer -->
+    <footer class="page-footer">
+        <center>
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-8 col-md-8 col-sm-12">
+                <br>
+                <h6 class="text-uppercase font-weight-bold">Additional Information</h6>
+                <p>Soul Match is an online dating web where people will choose whoever they want to date with. This web is made for you that have no much time to offline dating and too shy to ask for a date. User's privacy is protected, and there is no bot here. Also, users can save their time for meeting or dating right people..</p>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-12">
+                <br>
+                <h6 class="text-uppercase font-weight-bold">Find any problems? Contact us</h6>
+                <p><a href="https://instagram.com/pzyxooo" target="__blank">
+                  <img src="img/ig.png" width="50px"></a>
+                  <a href="https://www.facebook.com/fayusri.royfanto" target="__blank">
+                    <img src="img/fb.png" width="50px"></a>
+                  <a href="https://twitter.com/fatma_armi" target="__blank">
+                    <img src="img/twt.png" width="50px"></a>
+                  <a href=" https://wa.me/62895363665664" target="__blank">
+                    <img src="img/wa.png" width="50px"></a></p>
+              </div>
+            </div>
+          </div>
+        <div class="footer-copyright text-center bg-light">© 2021 Copyright: pz-team</div>
+        </center>
+      </footer>
+      <!-- end of footer -->
   </body>
 </html>
 
